@@ -44,7 +44,7 @@ a{color:inherit;} img,svg{display:block;} button{font-family:inherit;}
 .topbar-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 24px; max-width:1080px; margin:0 auto; gap:12px;}
 .brand{display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-weight:600; font-size:18px; text-decoration:none; color:var(--ink); white-space:nowrap;}
 .brand-mark{width:30px; height:30px; flex:none;}
-.navlinks{display:flex; align-items:center; gap:22px; list-style:none; margin:0; padding:0;}
+.navlinks{display:flex; align-items:center; gap:18px; list-style:none; margin:0; padding:0;}
 .navlinks a{text-decoration:none; font-size:14px; color:var(--ink-soft); font-weight:500; padding:6px 2px; border-bottom:2px solid transparent;}
 .navlinks a:hover{color:var(--ink); border-color:var(--teal);}
 .nav-actions{display:flex; align-items:center; gap:8px;}
@@ -53,7 +53,7 @@ a{color:inherit;} img,svg{display:block;} button{font-family:inherit;}
 .lang-btn{padding:7px 10px; font-size:12.5px; font-weight:600; background:var(--surface); color:var(--ink-soft); border:none; cursor:pointer;}
 .lang-btn.active{background:var(--teal); color:#F5F3EE;}
 .menu-btn{display:none;}
-@media (max-width:860px){.navlinks{display:none;} .menu-btn{display:flex;}}
+@media (max-width:960px){.navlinks{display:none;} .menu-btn{display:flex;}}
 .mobile-drawer{display:none; flex-direction:column; gap:2px; padding:8px 24px 18px; border-bottom:1px solid var(--line); background:var(--bg);}
 .mobile-drawer.open{display:flex;}
 .mobile-drawer a{padding:12px 6px; text-decoration:none; color:var(--ink); font-size:15px; border-bottom:1px solid var(--line);}
@@ -69,6 +69,8 @@ a{color:inherit;} img,svg{display:block;} button{font-family:inherit;}
 .btn-primary:hover{background:var(--teal-deep); color:#F5F3EE;}
 .btn-outline{background:transparent; color:var(--ink); border-color:var(--line);}
 .btn-outline:hover{border-color:var(--teal); color:var(--teal);}
+.btn-sm{padding:8px 16px; font-size:13.5px;}
+.btn:disabled{opacity:.5; cursor:not-allowed;}
 .breath-stage{position:relative; aspect-ratio:1/1; max-width:360px; margin:0 auto; display:flex; align-items:center; justify-content:center;}
 .breath-ring{position:absolute; inset:0; border-radius:50%; border:1px solid var(--line);}
 .breath-ring.r2{inset:12%;} .breath-ring.r3{inset:24%;}
@@ -81,12 +83,20 @@ section{padding:74px 0;}
 .kicker{font-size:13px; letter-spacing:.02em; color:var(--teal); font-weight:600; margin:0 0 10px;}
 .section-head h2{font-family:var(--font-display); font-size:clamp(22px,3vw,30px); font-weight:600; margin:0 0 12px; line-height:1.4;}
 .section-head p{color:var(--ink-soft); font-size:15px; margin:0;}
-.stat-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
-@media (max-width:760px){.stat-grid{grid-template-columns:1fr;}}
-.stat-card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-m); padding:26px;}
-.stat-card .num{font-family:var(--font-display); font-size:32px; font-weight:600; color:var(--teal-deep); display:block; margin-bottom:8px;}
-.stat-card p{margin:0; font-size:14px; color:var(--ink-soft);}
+.stat-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px;}
+@media (max-width:900px){.stat-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:560px){.stat-grid{grid-template-columns:1fr;}}
+.stat-card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-m); padding:24px;}
+.stat-card .num{font-family:var(--font-display); font-size:28px; font-weight:600; color:var(--teal-deep); display:block; margin-bottom:8px;}
+.stat-card p{margin:0; font-size:13.5px; color:var(--ink-soft);}
 .stat-card .src{display:block; margin-top:12px; font-size:12px; color:var(--ink-soft); opacity:.75;}
+.module-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:34px;}
+@media (max-width:900px){.module-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:560px){.module-grid{grid-template-columns:1fr;}}
+.module-card{border:1px solid var(--line); border-radius:var(--radius-m); padding:20px; background:var(--surface);}
+.module-card .mod-num{font-family:var(--font-display); color:var(--teal); font-weight:600; font-size:12.5px; letter-spacing:.05em; margin-bottom:8px; display:block;}
+.module-card h3{font-family:var(--font-display); font-size:16px; margin:0 0 6px; font-weight:600;}
+.module-card p{margin:0; font-size:13px; color:var(--ink-soft);}
 .card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-l); padding:34px;}
 @media (max-width:640px){.card{padding:24px;}}
 .breathe-panel{display:grid; grid-template-columns:0.9fr 1.1fr; gap:36px; align-items:center;}
@@ -129,6 +139,9 @@ table.log th{color:var(--ink-soft); font-weight:600; font-size:12.5px;}
 .accordion-head .chev{transition:transform .25s; flex:none;}
 .accordion.open .accordion-head .chev{transform:rotate(180deg);}
 .install-cta{margin-top:26px; display:flex; gap:14px; flex-wrap:wrap; align-items:center; background:var(--teal-pale); border-radius:var(--radius-m); padding:22px;}
+.roadmap-list{margin:18px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:12px;}
+.roadmap-list li{display:flex; gap:12px; font-size:14px; align-items:flex-start;}
+.roadmap-list .ver{flex:none; font-weight:700; color:var(--teal); font-family:var(--font-display); min-width:54px;}
 footer{border-top:1px solid var(--line); padding:44px 0 60px; margin-top:20px;}
 .footer-grid{display:flex; justify-content:space-between; gap:30px; flex-wrap:wrap;}
 .footer-note{max-width:520px; font-size:13px; color:var(--ink-soft);}
@@ -136,6 +149,29 @@ footer{border-top:1px solid var(--line); padding:44px 0 60px; margin-top:20px;}
 .footer-refs a{color:var(--ink-soft); text-decoration:underline;}
 .canvas-box{width:100%; height:150px;}
 canvas{width:100%; height:100%;}
+/* camera prototypes */
+.cam-preview{width:100%; max-width:280px; aspect-ratio:4/3; background:#0B0F0E; border-radius:var(--radius-m); object-fit:cover; margin:0 auto 14px; transform:scaleX(-1);}
+.cam-big{font-family:var(--font-display); font-size:42px; font-weight:600; color:var(--teal-deep); text-align:center; line-height:1.1;}
+.cam-big small{font-size:15px; font-weight:500; color:var(--ink-soft);}
+.meter{height:8px; border-radius:999px; background:var(--surface-soft); overflow:hidden; margin:8px 0;}
+.meter-fill{height:100%; background:var(--teal); width:0%; transition:width .12s linear;}
+.cam-status{font-size:13px; color:var(--ink-soft); text-align:center; min-height:20px; margin:10px 0;}
+.cam-wave{width:100%; height:72px; display:block;}
+.cam-center{text-align:center;}
+.cam-note{font-size:12px; color:var(--ink-soft); opacity:.85; margin-top:14px; border-top:1px dashed var(--line); padding-top:12px;}
+.sts-count{font-family:var(--font-display); font-size:56px; font-weight:600; color:var(--teal-deep); text-align:center; line-height:1;}
+.sts-timer{text-align:center; font-size:15px; color:var(--ink-soft); margin-top:4px;}
+.risk-sel{max-width:150px;}
+.risk-q{display:flex; justify-content:space-between; align-items:center; gap:14px; padding:11px 0; border-bottom:1px solid var(--line); font-size:14px;}
+.risk-q:last-of-type{border-bottom:none;}
+.risk-result{display:none; border-radius:var(--radius-m); padding:18px 20px; margin-top:18px;}
+.risk-result.show{display:block;}
+.risk-result.low{background:var(--teal-pale); border:1px solid var(--teal);}
+.risk-result.mid{background:var(--amber-pale); border:1px solid var(--amber);}
+.risk-result.high{background:var(--coral-pale); border:1px solid var(--coral);}
+.risk-result h4{margin:0 0 6px; font-family:var(--font-display); font-size:17px;}
+.risk-result p{margin:0; font-size:14px;}
+.mt{margin-top:28px;}
 </style>
 </head>
 <body>
@@ -148,8 +184,9 @@ canvas{width:100%; height:100%;}
     </a>
     <ul class="navlinks">
       <li><a href="#about" data-i18n="nav_about">项目介绍</a></li>
+      <li><a href="#camera" data-i18n="nav_camera">相机测量</a></li>
+      <li><a href="#cardio" data-i18n="nav_cardio">运动处方</a></li>
       <li><a href="#breathe" data-i18n="nav_breathe">呼吸训练</a></li>
-      <li><a href="#cardio" data-i18n="nav_cardio">心脏康复</a></li>
       <li><a href="#log" data-i18n="nav_log">我的记录</a></li>
       <li><a href="#evidence" data-i18n="nav_evidence">循证依据</a></li>
       <li><a href="#install" data-i18n="nav_install">安装应用</a></li>
@@ -166,8 +203,9 @@ canvas{width:100%; height:100%;}
   </div>
   <div class="mobile-drawer" id="mobileDrawer">
     <a href="#about" data-i18n="nav_about">项目介绍</a>
+    <a href="#camera" data-i18n="nav_camera">相机测量</a>
+    <a href="#cardio" data-i18n="nav_cardio">运动处方</a>
     <a href="#breathe" data-i18n="nav_breathe">呼吸训练</a>
-    <a href="#cardio" data-i18n="nav_cardio">心脏康复</a>
     <a href="#log" data-i18n="nav_log">我的记录</a>
     <a href="#evidence" data-i18n="nav_evidence">循证依据</a>
     <a href="#install" data-i18n="nav_install">安装应用</a>
@@ -181,7 +219,7 @@ canvas{width:100%; height:100%;}
       <h1 data-i18n="hero_title">从学会呼吸，到重新迈开脚步</h1>
       <p class="lead" data-i18n="hero_lead">心肺伴侣帮助心脏病、慢性呼吸系统疾病患者在出院后也能坚持呼吸训练与运动康复，默认配合医生处方使用。</p>
       <div class="hero-ctas">
-        <a href="#breathe" class="btn btn-primary" data-i18n="hero_cta1">体验呼吸训练</a>
+        <a href="#camera" class="btn btn-primary" data-i18n="hero_cta1">体验相机测量</a>
         <a href="#evidence" class="btn btn-outline" data-i18n="hero_cta2">查看循证依据</a>
       </div>
     </div>
@@ -203,7 +241,7 @@ canvas{width:100%; height:100%;}
     <div class="section-head">
       <p class="kicker" data-i18n="about_kicker">为什么是心肺康复</p>
       <h2 data-i18n="about_title">康复远没有结束，管理却常常止步于出院那一刻</h2>
-      <p data-i18n="about_lead">心肌梗死、心力衰竭、冠心病，以及慢性阻塞性肺疾病(COPD)等患者出院后，能坚持完成康复训练的比例普遍偏低。心肺伴侣希望把呼吸训练、运动康复和症状记录连接成一条完整的日常闭环。</p>
+      <p data-i18n="about_lead">心肌梗死、心力衰竭、冠心病，以及慢性阻塞性肺疾病(COPD)等患者出院后，能坚持完成康复训练的比例普遍偏低。心肺伴侣仅用手机或电脑摄像头（无需可穿戴设备），把相机心率测量、30秒坐站评估、双通道强度处方和风险分层，与呼吸训练、症状记录连接成一条完整的日常闭环。</p>
     </div>
     <div class="stat-grid">
       <div class="stat-card">
@@ -217,9 +255,147 @@ canvas{width:100%; height:100%;}
         <span class="src" data-i18n="stat2_src">心脏康复相关文献综述</span>
       </div>
       <div class="stat-card">
-        <span class="num">235</span>
-        <p data-i18n="stat3_p">韩国已有呼吸康复(COPD)数字治疗器械的获批先例；中国NMPA截至2024年底已批准235款符合数字疗法定义的设备。</p>
-        <span class="src" data-i18n="stat3_src">韩国MFDS / npj Digital Medicine, 2025</span>
+        <span class="num">0.88 vs 0.83</span>
+        <p data-i18n="stat3_p">30秒坐站测试(STS)与6分钟步行测试(6MWT)的效应量相当(SMD)，因此 STS 被选为本产品的第一功能评估。</p>
+        <span class="src" data-i18n="stat3_src">Thanakamchokchai 等，DIGITAL HEALTH，2025</span>
+      </div>
+      <div class="stat-card">
+        <span class="num">0.3%</span>
+        <p data-i18n="stat4_p">远程康复相关不良事件发生率极低(0.3%)，这是本产品「风险分层」安全设计的直接依据。</p>
+        <span class="src" data-i18n="stat4_src">Shnitzer 等，JMIR Rehabilitation and Assistive Technologies，2025</span>
+      </div>
+    </div>
+    <div class="module-grid">
+      <div class="module-card">
+        <span class="mod-num" data-i18n="mod1_num">模块 01</span>
+        <h3 data-i18n="mod1_title">相机心率 (rPPG)</h3>
+        <p data-i18n="mod1_p">用摄像头捕捉面部血流引起的细微颜色变化，估算心率，无需任何可穿戴设备。</p>
+      </div>
+      <div class="module-card">
+        <span class="mod-num" data-i18n="mod2_num">模块 02</span>
+        <h3 data-i18n="mod2_title">30秒坐站测试 (STS)</h3>
+        <p data-i18n="mod2_p">通过帧差动作检测自动计数坐立次数，评估下肢功能与运动能力。</p>
+      </div>
+      <div class="module-card">
+        <span class="mod-num" data-i18n="mod3_num">模块 03</span>
+        <h3 data-i18n="mod3_title">双通道强度处方</h3>
+        <p data-i18n="mod3_p">同时给出心率储备(HRR)目标区间与主观用力感(RPE)，两条通道互为校验。</p>
+      </div>
+      <div class="module-card">
+        <span class="mod-num" data-i18n="mod4_num">模块 04</span>
+        <h3 data-i18n="mod4_title">风险分层</h3>
+        <p data-i18n="mod4_p">运动前自评问卷，将使用者分为低/中/高风险，并给出相应安全建议。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="camera">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker" data-i18n="camera_kicker">相机测量</p>
+      <h2 data-i18n="camera_title">不用任何可穿戴设备，只用摄像头</h2>
+      <p data-i18n="camera_lead">以下功能为研究原型：算法目前仅以合成信号进行交叉验证，尚未经过人体实测。结果仅用于课程研究演示，不能用于任何医疗决策。</p>
+    </div>
+    <div class="two-col">
+      <div class="card cam-center">
+        <h3 style="font-family:var(--font-display); margin-top:0;" data-i18n="rppg_title">相机心率 (rPPG)</h3>
+        <video id="rppgVideo" class="cam-preview" playsinline muted></video>
+        <div class="cam-big" id="rppgValue"><span data-i18n="rppg_placeholder">—</span> <small id="rppgUnit" data-i18n="rppg_unit">次/分</small></div>
+        <div class="cam-status" id="rppgStatus" data-i18n="rppg_status_idle">点击开始，保持面部正对摄像头并尽量静止</div>
+        <canvas class="cam-wave" id="rppgWave" height="72"></canvas>
+        <div class="control-row" style="justify-content:center;">
+          <button class="btn btn-primary btn-sm" id="rppgStart" data-i18n="rppg_start">开始测量</button>
+          <button class="btn btn-outline btn-sm" id="rppgStop" data-i18n="rppg_stop">停止</button>
+        </div>
+        <p class="cam-note" data-i18n="rppg_disclaimer">rPPG 为研究原型（POS·光谱SNR门控），仅以合成信号交叉验证，尚未经人体实测；结果不能用于医疗决策。</p>
+      </div>
+      <div class="card cam-center">
+        <h3 style="font-family:var(--font-display); margin-top:0;" data-i18n="sts_title">30秒坐站测试 (STS)</h3>
+        <video id="stsVideo" class="cam-preview" playsinline muted></video>
+        <div class="sts-count" id="stsCount">0</div>
+        <div class="sts-timer" id="stsTime" data-i18n="sts_time_idle">30 秒</div>
+        <div class="meter" style="max-width:280px; margin:12px auto 0;"><div class="meter-fill" id="stsMeter"></div></div>
+        <div class="cam-status" id="stsStatus" data-i18n="sts_status_idle">点击开始，摄像头将自动计数起立坐下次数</div>
+        <div class="control-row" style="justify-content:center;">
+          <button class="btn btn-primary btn-sm" id="stsStart" data-i18n="sts_start">开始测试</button>
+          <button class="btn btn-outline btn-sm" id="stsStop" data-i18n="sts_stop">停止</button>
+          <button class="btn btn-outline btn-sm" id="stsMinus" title="−1">−1</button>
+          <button class="btn btn-outline btn-sm" id="stsPlus" title="+1">+1</button>
+        </div>
+        <div class="control-row" style="justify-content:center;">
+          <button class="btn btn-primary btn-sm" id="stsSave" data-i18n="sts_save">保存结果</button>
+        </div>
+        <p class="cam-note" id="stsLast"></p>
+        <p class="cam-note" data-i18n="sts_disclaimer">自动计数为研究原型（帧差法，v1），v2 将升级为姿态估计计数；请以人工/医生计数为准。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cardio" style="background:var(--surface-soft);">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker" data-i18n="cardio_kicker">运动处方</p>
+      <h2 data-i18n="cardio_title">用双通道给出今天的运动强度</h2>
+      <p data-i18n="cardio_lead">输入年龄和静息心率即可计算心率储备(HRR)目标区间，再选择主观用力感(RPE)目标。两条通道互为校验，实际运动强度请务必以主治医生的处方范围为准。</p>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <h3 style="font-family:var(--font-display); margin-top:0;" data-i18n="hr_calc_title">双通道强度处方（HRR + RPE）</h3>
+        <div class="form-grid">
+          <div class="field"><label for="ageInput" data-i18n="age_label">年龄（岁）</label><input type="number" id="ageInput" min="18" max="100" value="60"></div>
+          <div class="field"><label for="rhrInput" data-i18n="rhr_label">静息心率（次/分）</label><input type="number" id="rhrInput" min="40" max="120" value="72"></div>
+        </div>
+        <div class="field">
+          <label for="intensityLow"><span data-i18n="intensity_label_prefix">目标运动强度：</span><span id="intensityOut">40–60%</span></label>
+          <input type="range" id="intensityLow" min="20" max="90" value="40">
+          <input type="range" id="intensityHigh" min="20" max="90" value="60">
+        </div>
+        <div class="zone-bar"><div class="zone-fill" id="zoneFill"></div></div>
+        <div class="zone-labels"><span data-i18n="zone_left_label">静息</span><span data-i18n="zone_right_label">最大心率推算</span></div>
+        <p style="font-size:14px; margin-top:16px;"><span data-i18n="zone_result_label">目标心率区间：</span> <strong id="zoneResult" style="font-family:var(--font-display); font-size:19px;">–</strong> <span data-i18n="zone_unit">次/分（基于卡沃宁公式）</span></p>
+        <div class="field" style="margin-top:18px;">
+          <label for="rpeSelect" data-i18n="rpe_label">目标主观强度（RPE, Borg 6–20）</label>
+          <select id="rpeSelect">
+            <option value="6-8" data-i18n="rpe_opt_lightest">6–8 · 非常轻松</option>
+            <option value="9-11" data-i18n="rpe_opt_light">9–11 · 轻松</option>
+            <option value="12-14" selected data-i18n="rpe_opt_mod">12–14 · 有点吃力（推荐）</option>
+            <option value="15-16" data-i18n="rpe_opt_hard">15–16 · 吃力</option>
+            <option value="17-20" data-i18n="rpe_opt_veryhard">17–20 · 非常吃力</option>
+          </select>
+        </div>
+        <p style="font-size:14px;"><span data-i18n="rpe_result_label">目标 RPE：</span> <strong id="rpeResult" style="font-family:var(--font-display); font-size:17px;">12–14</strong></p>
+        <p style="font-size:12.5px; color:var(--ink-soft);" data-i18n="rpe_note">RPE 在无法可靠测量心率（如服用β受体阻滞剂）时尤其有用。</p>
+        <p style="font-size:12.5px; color:var(--ink-soft);" data-i18n="hr_disclaimer">此为参考计算。若正在服用β受体阻滞剂等影响心率反应的药物，请务必与主治医生确认。</p>
+      </div>
+      <div class="card">
+        <h3 style="font-family:var(--font-display); margin-top:0;" data-i18n="mwt_title">6分钟步行测试(6MWT)记录</h3>
+        <div class="form-grid">
+          <div class="field"><label for="mwtDate" data-i18n="mwt_date_label">测试日期</label><input type="date" id="mwtDate"></div>
+          <div class="field"><label for="mwtDistance" data-i18n="mwt_distance_label">步行距离(米)</label><input type="number" id="mwtDistance" min="0" max="900" data-i18n-placeholder="mwt_distance_placeholder" placeholder="例如：380"></div>
+        </div>
+        <button class="btn btn-primary" id="mwtSave" style="width:100%; justify-content:center;" data-i18n="mwt_save">保存记录</button>
+        <div class="canvas-box"><canvas id="mwtChart"></canvas></div>
+        <table class="log" id="mwtTable"><thead><tr><th data-i18n="mwt_th_date">日期</th><th data-i18n="mwt_th_distance">距离</th></tr></thead><tbody></tbody></table>
+      </div>
+    </div>
+    <div class="card mt">
+      <h3 style="font-family:var(--font-display); margin-top:0;" data-i18n="risk_title">风险分层（运动前自评）</h3>
+      <p style="font-size:14px; color:var(--ink-soft); margin:0 0 6px;" data-i18n="risk_lead">开始运动前，请如实回答以下问题。本分层仅为研究原型演示，不能替代专业医疗评估。</p>
+      <div class="risk-q"><span data-i18n="risk_q1">你已被医生诊断为心脏病（如冠心病、心衰、心律失常）吗？</span><select class="risk-sel" data-q="1"><option value="" selected data-i18n="risk_na">—</option><option value="yes" data-i18n="risk_yes">是</option><option value="no" data-i18n="risk_no">否</option></select></div>
+      <div class="risk-q"><span data-i18n="risk_q2">过去6个月内，你是否发生过心肌梗死、心脏手术或卒中？</span><select class="risk-sel" data-q="2"><option value="" selected data-i18n="risk_na">—</option><option value="yes" data-i18n="risk_yes">是</option><option value="no" data-i18n="risk_no">否</option></select></div>
+      <div class="risk-q"><span data-i18n="risk_q3">在静息或轻微活动时，你是否出现过胸痛、明显气促或晕厥？</span><select class="risk-sel" data-q="3"><option value="" selected data-i18n="risk_na">—</option><option value="yes" data-i18n="risk_yes">是</option><option value="no" data-i18n="risk_no">否</option></select></div>
+      <div class="risk-q"><span data-i18n="risk_q4">你是否正在服用医生处方的治疗心脏病的药物？</span><select class="risk-sel" data-q="4"><option value="" selected data-i18n="risk_na">—</option><option value="yes" data-i18n="risk_yes">是</option><option value="no" data-i18n="risk_no">否</option></select></div>
+      <div class="risk-q"><span data-i18n="risk_q5">你是否有糖尿病、高血压或慢性肺部疾病等慢性病？</span><select class="risk-sel" data-q="5"><option value="" selected data-i18n="risk_na">—</option><option value="yes" data-i18n="risk_yes">是</option><option value="no" data-i18n="risk_no">否</option></select></div>
+      <div class="risk-q"><span data-i18n="risk_q6">医生是否曾建议你限制或避免某些运动？</span><select class="risk-sel" data-q="6"><option value="" selected data-i18n="risk_na">—</option><option value="yes" data-i18n="risk_yes">是</option><option value="no" data-i18n="risk_no">否</option></select></div>
+      <div class="control-row">
+        <button class="btn btn-primary" id="riskEval" data-i18n="risk_eval">评估我的风险</button>
+        <span style="font-size:13px; color:var(--ink-soft);" id="riskIdle" data-i18n="risk_idle">请回答以上问题后点击评估</span>
+      </div>
+      <div class="risk-result" id="riskResult">
+        <h4 id="riskResultTitle"></h4>
+        <p id="riskResultText"></p>
       </div>
     </div>
   </div>
@@ -259,44 +435,6 @@ canvas{width:100%; height:100%;}
             <div class="phase-count" id="phaseCount" data-i18n="orb_widget_ready_count">点击开始</div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="cardio" style="background:var(--surface-soft);">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="kicker" data-i18n="cardio_kicker">心脏康复</p>
-      <h2 data-i18n="cardio_title">今天，运动到什么强度比较合适</h2>
-      <p data-i18n="cardio_lead">输入年龄和静息心率，即可计算出建议的运动强度区间。实际运动强度请务必以主治医生的处方范围为准。</p>
-    </div>
-    <div class="two-col">
-      <div class="card">
-        <h3 style="font-family:var(--font-display); margin-top:0;" data-i18n="hr_calc_title">目标心率计算器</h3>
-        <div class="form-grid">
-          <div class="field"><label for="ageInput" data-i18n="age_label">年龄（岁）</label><input type="number" id="ageInput" min="18" max="100" value="60"></div>
-          <div class="field"><label for="rhrInput" data-i18n="rhr_label">静息心率（次/分）</label><input type="number" id="rhrInput" min="40" max="120" value="72"></div>
-        </div>
-        <div class="field">
-          <label for="intensityLow"><span data-i18n="intensity_label_prefix">目标运动强度：</span><span id="intensityOut">40–60%</span></label>
-          <input type="range" id="intensityLow" min="20" max="90" value="40">
-          <input type="range" id="intensityHigh" min="20" max="90" value="60">
-        </div>
-        <div class="zone-bar"><div class="zone-fill" id="zoneFill"></div></div>
-        <div class="zone-labels"><span data-i18n="zone_left_label">静息</span><span data-i18n="zone_right_label">最大心率推算</span></div>
-        <p style="font-size:14px; margin-top:16px;"><span data-i18n="zone_result_label">目标心率区间：</span> <strong id="zoneResult" style="font-family:var(--font-display); font-size:19px;">–</strong> <span data-i18n="zone_unit">次/分（基于卡沃宁公式）</span></p>
-        <p style="font-size:12.5px; color:var(--ink-soft);" data-i18n="hr_disclaimer">此为参考计算。若正在服用β受体阻滞剂等影响心率反应的药物，请务必与主治医生确认。</p>
-      </div>
-      <div class="card">
-        <h3 style="font-family:var(--font-display); margin-top:0;" data-i18n="mwt_title">6分钟步行测试(6MWT)记录</h3>
-        <div class="form-grid">
-          <div class="field"><label for="mwtDate" data-i18n="mwt_date_label">测试日期</label><input type="date" id="mwtDate"></div>
-          <div class="field"><label for="mwtDistance" data-i18n="mwt_distance_label">步行距离(米)</label><input type="number" id="mwtDistance" min="0" max="900" data-i18n-placeholder="mwt_distance_placeholder" placeholder="例如：380"></div>
-        </div>
-        <button class="btn btn-primary" id="mwtSave" style="width:100%; justify-content:center;" data-i18n="mwt_save">保存记录</button>
-        <div class="canvas-box"><canvas id="mwtChart"></canvas></div>
-        <table class="log" id="mwtTable"><thead><tr><th data-i18n="mwt_th_date">日期</th><th data-i18n="mwt_th_distance">距离</th></tr></thead><tbody></tbody></table>
       </div>
     </div>
   </div>
@@ -360,6 +498,16 @@ canvas{width:100%; height:100%;}
         <span class="cite">Anderson L, et al. Cochrane Database Syst Rev, 2016. PubMed 26764059</span>
       </div>
       <div class="evidence-card">
+        <h3 data-i18n="ev5_title">为什么选坐站测试(STS)作为第一评估</h3>
+        <p data-i18n="ev5_p">远程康复的系统综述与荟萃分析显示，30秒坐站测试与6分钟步行测试的效应量相当(SMD 0.88 vs 0.83)，且 STS 更省时、更易在家庭环境中完成。</p>
+        <span class="cite">Thanakamchokchai J, et al. DIGITAL HEALTH, 2025. doi:10.1177/20552076251325993</span>
+      </div>
+      <div class="evidence-card">
+        <h3 data-i18n="ev6_title">远程康复的安全性</h3>
+        <p data-i18n="ev6_p">对远程康复的系统综述显示，相关不良事件发生率仅为0.3%，这为「风险分层 + 居家训练」的安全设计提供了直接依据。</p>
+        <span class="cite">Shnitzer H, et al. JMIR Rehabilitation and Assistive Technologies, 2025. doi:10.2196/68681</span>
+      </div>
+      <div class="evidence-card">
         <h3 data-i18n="ev2_title">数字化心脏康复的依从性</h3>
         <p data-i18n="ev2_p">一项针对心力衰竭患者的数字治疗心脏康复系统综述显示，项目依从性可超过85%，且未报告严重不良反应。</p>
         <span class="cite" data-i18n="ev2_cite">数字治疗心脏康复系统综述（PMC9773765系列）</span>
@@ -399,7 +547,11 @@ canvas{width:100%; height:100%;}
     </div>
     <div class="install-cta">
       <span class="badge" data-i18n="install_badge">开发路线图</span>
-      <p style="margin:0; font-size:14px; color:var(--ink-soft);" data-i18n="install_cta_p">下一阶段计划将当前界面与数据结构原样迁移，开发为原生iOS/Android应用，并加入可穿戴设备心率联动与医生端管理后台。</p>
+      <ul class="roadmap-list">
+        <li><span class="ver" data-i18n="road_v1_label">v1 · 当前</span><span data-i18n="road_v1">浏览器 rPPG + 帧差法坐站计数 + 双通道强度处方 + 风险分层；算法仅以合成信号 5 折交叉验证。</span></li>
+        <li><span class="ver" data-i18n="road_v15_label">v1.5 · 2026冬</span><span data-i18n="road_v15">与脉搏血氧仪对比的误差测量，记录光照、肤色等条件下的性能。</span></li>
+        <li><span class="ver" data-i18n="road_v2_label">v2 · 2027初</span><span data-i18n="road_v2">姿态估计坐站计数、胸廓运动呼吸率估计，并迁移为原生应用。</span></li>
+      </ul>
     </div>
   </div>
 </section>
@@ -411,11 +563,13 @@ canvas{width:100%; height:100%;}
         <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10" fill="var(--teal)"/><path d="M20 29C15 24.4 10 19.8 10 14.6A5.6 5.6 0 0 1 20 11a5.6 5.6 0 0 1 10 3.6C30 19.8 25 24.4 20 29Z" fill="#F5F3EE"/></svg>
         <span data-i18n="brand">心肺伴侣</span>
       </a>
-      <p class="footer-note" data-i18n="footer_note">本网站为课程作业制作的产品原型，未获得任何医疗器械资质认证。涉及医学判断的内容，请务必咨询主治医生。</p>
+      <p class="footer-note" data-i18n="footer_note">本网站为课程作业制作的研究原型，未获得任何医疗器械资质认证；算法目前仅以合成信号验证，尚未经人体实测。涉及医学判断的内容，请务必咨询主治医生。</p>
     </div>
     <div class="footer-refs">
       <div data-i18n="footer_refs_label">参考文献</div>
       <div>Anderson L, et al. Exercise-based cardiac rehabilitation for coronary heart disease. Cochrane Database Syst Rev. 2016. <a href="https://pubmed.ncbi.nlm.nih.gov/26764059/" target="_blank" rel="noopener">PubMed 26764059</a></div>
+      <div>Thanakamchokchai J, et al. Effectiveness of telerehabilitation on the ICF framework outcomes during the COVID-19 pandemic. DIGITAL HEALTH. 2025. <a href="https://doi.org/10.1177/20552076251325993" target="_blank" rel="noopener">doi:10.1177/20552076251325993</a></div>
+      <div>Shnitzer H, et al. The Safety of Telerehabilitation: Systematic Review. JMIR Rehabilitation and Assistive Technologies. 2025. <a href="https://doi.org/10.2196/68681" target="_blank" rel="noopener">doi:10.2196/68681</a></div>
       <div>Efficacy and safety of digital therapeutics-based cardiac rehabilitation in heart failure patients. <a href="https://www.omicsdi.org/dataset/biostudies-literature/S-EPMC9773765" target="_blank" rel="noopener">PMC9773765</a></div>
       <div>Analysis of NMPA-approved digital therapeutics in China. npj Digital Medicine, 2025, s41746-025-01660-9</div>
     </div>
@@ -427,27 +581,52 @@ var I18N = {
 zh:{
   pageTitle:"心肺伴侣 · 心肺康复数字治疗产品", pageDesc:"连接心脏康复与呼吸康复的数字治疗产品原型",
   brand:"心肺伴侣",
-  nav_about:"项目介绍", nav_breathe:"呼吸训练", nav_cardio:"心脏康复", nav_log:"我的记录", nav_evidence:"循证依据", nav_install:"安装应用",
+  nav_about:"项目介绍", nav_camera:"相机测量", nav_cardio:"运动处方", nav_breathe:"呼吸训练", nav_log:"我的记录", nav_evidence:"循证依据", nav_install:"安装应用",
   hero_tag:"心肺康复数字治疗产品原型", hero_title:"从学会呼吸，到重新迈开脚步",
-  hero_lead:"心肺伴侣帮助心脏病、慢性呼吸系统疾病患者在出院后也能坚持呼吸训练与运动康复，默认配合医生处方使用。",
-  hero_cta1:"体验呼吸训练", hero_cta2:"查看循证依据",
+  hero_lead:"心肺伴侣仅用手机或电脑摄像头，帮助心脏病、慢性呼吸系统疾病患者在出院后也能坚持呼吸训练与运动康复，默认配合医生处方使用。",
+  hero_cta1:"体验相机测量", hero_cta2:"查看循证依据",
   orb_ready_label:"准备开始", orb_hero_ready_count:"请在下方开始训练", orb_widget_ready_count:"点击开始",
   about_kicker:"为什么是心肺康复", about_title:"康复远没有结束，管理却常常止步于出院那一刻",
-  about_lead:"心肌梗死、心力衰竭、冠心病，以及慢性阻塞性肺疾病(COPD)等患者出院后，能坚持完成康复训练的比例普遍偏低。心肺伴侣希望把呼吸训练、运动康复和症状记录连接成一条完整的日常闭环。",
+  about_lead:"心肌梗死、心力衰竭、冠心病，以及慢性阻塞性肺疾病(COPD)等患者出院后，能坚持完成康复训练的比例普遍偏低。心肺伴侣仅用手机或电脑摄像头（无需可穿戴设备），把相机心率测量、30秒坐站评估、双通道强度处方和风险分层，与呼吸训练、症状记录连接成一条完整的日常闭环。",
   stat1_p:"基于运动的心脏康复被证实可降低心血管死亡风险（相对风险 0.74，95% CI 0.64–0.86）。", stat1_src:"Anderson 等，Cochrane 系统综述，2016",
   stat2_p:"大量符合条件的患者实际上并未参与院外心脏康复项目，凸显了远程与数字化方案的必要性。", stat2_src:"心脏康复相关文献综述",
-  stat3_p:"韩国已有呼吸康复(COPD)数字治疗器械的获批先例；中国NMPA截至2024年底已批准235款符合数字疗法定义的设备。", stat3_src:"韩国MFDS / npj Digital Medicine, 2025",
+  stat3_p:"30秒坐站测试(STS)与6分钟步行测试(6MWT)的效应量相当(SMD)，因此 STS 被选为本产品的第一功能评估。", stat3_src:"Thanakamchokchai 等，DIGITAL HEALTH，2025",
+  stat4_p:"远程康复相关不良事件发生率极低(0.3%)，这是本产品「风险分层」安全设计的直接依据。", stat4_src:"Shnitzer 等，JMIR Rehabilitation and Assistive Technologies，2025",
+  mod1_num:"模块 01", mod1_title:"相机心率 (rPPG)", mod1_p:"用摄像头捕捉面部血流引起的细微颜色变化，估算心率，无需任何可穿戴设备。",
+  mod2_num:"模块 02", mod2_title:"30秒坐站测试 (STS)", mod2_p:"通过帧差动作检测自动计数坐立次数，评估下肢功能与运动能力。",
+  mod3_num:"模块 03", mod3_title:"双通道强度处方", mod3_p:"同时给出心率储备(HRR)目标区间与主观用力感(RPE)，两条通道互为校验。",
+  mod4_num:"模块 04", mod4_title:"风险分层", mod4_p:"运动前自评问卷，将使用者分为低/中/高风险，并给出相应安全建议。",
   breathe_kicker:"呼吸训练", breathe_title:"选择一种节奏，跟随圆环慢慢呼吸", breathe_lead:"圆环变大时吸气，停留时屏息，缩小时呼气。哪怕每天只坚持几分钟，规律练习才是关键。",
   pattern_box:"箱式呼吸 4·4·4·4", pattern_relax:"放松呼吸 4·7·8", pattern_pursed:"缩唇呼吸 2·4",
   breathe_start:"开始训练", breathe_stop:"停止",
-  stat_sessions_label:"今日完成次数", stat_minutes_label:"累计训练分钟", stat_streak_label:"连续训练天数",
-  cardio_kicker:"心脏康复", cardio_title:"今天，运动到什么强度比较合适", cardio_lead:"输入年龄和静息心率，即可计算出建议的运动强度区间。实际运动强度请务必以主治医生的处方范围为准。",
-  hr_calc_title:"目标心率计算器", age_label:"年龄（岁）", rhr_label:"静息心率（次/分）",
+  stat_sessions_label:"今日完成次数", stat_minutes_label:"累计训练时长", stat_streak_label:"连续训练天数",
+  camera_kicker:"相机测量", camera_title:"不用任何可穿戴设备，只用摄像头", camera_lead:"以下功能为研究原型：算法目前仅以合成信号进行交叉验证，尚未经过人体实测。结果仅用于课程研究演示，不能用于任何医疗决策。",
+  rppg_title:"相机心率 (rPPG)", rppg_placeholder:"—", rppg_unit:"次/分", rppg_start:"开始测量", rppg_stop:"停止",
+  rppg_status_idle:"点击开始，保持面部正对摄像头并尽量静止", rppg_status_measuring:"正在测量…请保持静止", rppg_status_low:"信号质量不足，请靠近光源、保持面部静止", rppg_status_none:"—",
+  rppg_disclaimer:"rPPG 为研究原型（POS·光谱SNR门控），仅以合成信号交叉验证，尚未经人体实测；结果不能用于医疗决策。",
+  sts_title:"30秒坐站测试 (STS)", sts_start:"开始测试", sts_stop:"停止", sts_save:"保存结果",
+  sts_time_idle:"30 秒", sts_status_idle:"点击开始，摄像头将自动计数起立坐下次数",
+  sts_disclaimer:"自动计数为研究原型（帧差法，v1），v2 将升级为姿态估计计数；请以人工/医生计数为准。",
+  sts_last:"上次记录：无", sts_last_fmt:"上次记录：{n} 次（{d}）",
+  cardio_kicker:"运动处方", cardio_title:"用双通道给出今天的运动强度",
+  cardio_lead:"输入年龄和静息心率即可计算心率储备(HRR)目标区间，再选择主观用力感(RPE)目标。两条通道互为校验，实际运动强度请务必以主治医生的处方范围为准。",
+  hr_calc_title:"双通道强度处方（HRR + RPE）", age_label:"年龄（岁）", rhr_label:"静息心率（次/分）",
   intensity_label_prefix:"目标运动强度：", zone_left_label:"静息", zone_right_label:"最大心率推算",
   zone_result_label:"目标心率区间：", zone_unit:"次/分（基于卡沃宁公式）",
+  rpe_label:"目标主观强度（RPE, Borg 6–20）", rpe_result_label:"目标 RPE：",
+  rpe_opt_lightest:"6–8 · 非常轻松", rpe_opt_light:"9–11 · 轻松", rpe_opt_mod:"12–14 · 有点吃力（推荐）", rpe_opt_hard:"15–16 · 吃力", rpe_opt_veryhard:"17–20 · 非常吃力",
+  rpe_note:"RPE 在无法可靠测量心率（如服用β受体阻滞剂）时尤其有用。",
   hr_disclaimer:"此为参考计算。若正在服用β受体阻滞剂等影响心率反应的药物，请务必与主治医生确认。",
   mwt_title:"6分钟步行测试(6MWT)记录", mwt_date_label:"测试日期", mwt_distance_label:"步行距离(米)", mwt_distance_placeholder:"例如：380",
   mwt_save:"保存记录", mwt_th_date:"日期", mwt_th_distance:"距离",
+  risk_title:"风险分层（运动前自评）", risk_lead:"开始运动前，请如实回答以下问题。本分层仅为研究原型演示，不能替代专业医疗评估。",
+  risk_q1:"你已被医生诊断为心脏病（如冠心病、心衰、心律失常）吗？", risk_q2:"过去6个月内，你是否发生过心肌梗死、心脏手术或卒中？", risk_q3:"在静息或轻微活动时，你是否出现过胸痛、明显气促或晕厥？", risk_q4:"你是否正在服用医生处方的治疗心脏病的药物？", risk_q5:"你是否有糖尿病、高血压或慢性肺部疾病等慢性病？", risk_q6:"医生是否曾建议你限制或避免某些运动？",
+  risk_na:"—", risk_yes:"是", risk_no:"否", risk_eval:"评估我的风险", risk_idle:"请回答以上问题后点击评估",
+  risk_result_low:"低风险", risk_result_mid:"中等风险", risk_result_high:"高风险",
+  risk_advice_low:"可按医生处方在家进行呼吸训练与中等强度运动。开始前如有不适，请立即停止并就医。",
+  risk_advice_mid:"建议先在医生评估并获得运动处方后，再开始运动。呼吸训练一般安全，但请遵循医嘱。",
+  risk_advice_high:"请勿自行开始运动。尽快咨询医生；如出现静息胸痛、气促或晕厥，请立即就医。",
+  risk_alert:"请先回答全部问题。",
   log_kicker:"我的记录", log_title:"花一分钟，记录今天的身体状况", log_lead:"坚持记录的点滴数据，会成为与医生沟通时最直接的参考资料。",
   mood_label:"今日状态", checkin_hr_label:"静息心率(次/分)", checkin_hr_placeholder:"例如：74",
   checkin_breath_label:"呼吸困难程度(mMRC 0–4)",
@@ -456,6 +635,8 @@ zh:{
   log_card2_title:"最近7天趋势", checkin_th_date:"日期", checkin_th_mood:"状态", checkin_th_hr:"静息心率", checkin_th_breath:"呼吸困难",
   evidence_kicker:"循证依据", evidence_title:"为什么要把心肺康复延伸到数字化场景", evidence_lead:"以下依据来自国内外文献与监管现状，是本原型设计的出发点。",
   ev1_title:"运动基础心脏康复的疗效", ev1_p:"针对冠心病患者的Cochrane系统综述显示，基于运动的心脏康复可降低心血管死亡风险(RR 0.74)和再住院风险(RR 0.82)。",
+  ev5_title:"为什么选坐站测试(STS)作为第一评估", ev5_p:"远程康复的系统综述与荟萃分析显示，30秒坐站测试与6分钟步行测试的效应量相当(SMD 0.88 vs 0.83)，且 STS 更省时、更易在家庭环境中完成。",
+  ev6_title:"远程康复的安全性", ev6_p:"对远程康复的系统综述显示，相关不良事件发生率仅为0.3%，这为「风险分层 + 居家训练」的安全设计提供了直接依据。",
   ev2_title:"数字化心脏康复的依从性", ev2_p:"一项针对心力衰竭患者的数字治疗心脏康复系统综述显示，项目依从性可超过85%，且未报告严重不良反应。", ev2_cite:"数字治疗心脏康复系统综述（PMC9773765系列）",
   ev3_title:"韩国与中国的监管现状", ev3_p:"韩国已有呼吸康复(COPD等)数字治疗器械获批先例；中国NMPA截至2024年底已批准235款符合数字疗法定义的设备，神经系统疾病占比最高。",
   ev4_title:"参与率低是共同难题", ev4_p:"院外心脏康复疗效明确，但实际参与率普遍偏低，远程和移动化的康复方式被广泛认为是可行的替代路径。", ev4_cite:"心脏康复数字健康相关文献综述",
@@ -464,35 +645,64 @@ zh:{
   acc1_head:"安卓设备（小米、华为、三星等）添加到主屏幕", acc1_body:"打开本页面所用浏览器的菜单，选择“添加到主屏幕”或“安装应用”。小米(HyperOS/MIUI)和华为(EMUI/HarmonyOS)的自带浏览器同样基于Chromium内核，操作方式一致。",
   acc2_head:"苹果设备（iPhone、iPad，Safari）添加到主屏幕", acc2_body:"点击屏幕底部的分享按钮，选择“添加到主屏幕”。图标会出现在主屏幕上，全屏运行。",
   acc3_head:"电脑端（Windows / macOS）安装为应用", acc3_body:"点击地址栏右侧的安装图标，或在浏览器菜单中选择“安装应用”，即可像独立软件一样运行。",
-  install_badge:"开发路线图", install_cta_p:"下一阶段计划将当前界面与数据结构原样迁移，开发为原生iOS/Android应用，并加入可穿戴设备心率联动与医生端管理后台。",
-  footer_note:"本网站为课程作业制作的产品原型，未获得任何医疗器械资质认证。涉及医学判断的内容，请务必咨询主治医生。", footer_refs_label:"参考文献",
+  install_badge:"开发路线图",
+  road_v1_label:"v1 · 当前", road_v1:"浏览器 rPPG + 帧差法坐站计数 + 双通道强度处方 + 风险分层；算法仅以合成信号 5 折交叉验证。",
+  road_v15_label:"v1.5 · 2026冬", road_v15:"与脉搏血氧仪对比的误差测量，记录光照、肤色等条件下的性能。",
+  road_v2_label:"v2 · 2027初", road_v2:"姿态估计坐站计数、胸廓运动呼吸率估计，并迁移为原生应用。",
+  footer_note:"本网站为课程作业制作的研究原型，未获得任何医疗器械资质认证；算法目前仅以合成信号验证，尚未经人体实测。涉及医学判断的内容，请务必咨询主治医生。", footer_refs_label:"参考文献",
+  cam_denied:"无法访问摄像头，请检查权限设置。", cam_unsupported:"当前浏览器不支持摄像头。",
   alert_distance:"请输入步行距离。", alert_hr:"请正确输入静息心率。", chart_no_data:"暂无记录",
   unit_sec:"秒", unit_min:"分钟", unit_day:"天", unit_dist:"米"
 },
 en:{
   pageTitle:"CardioBreath · Cardiopulmonary Rehabilitation DTx", pageDesc:"A digital therapeutics prototype connecting cardiac and respiratory rehabilitation",
   brand:"CardioBreath",
-  nav_about:"About", nav_breathe:"Breathing", nav_cardio:"Cardiac Rehab", nav_log:"My Log", nav_evidence:"Evidence", nav_install:"Install App",
+  nav_about:"About", nav_camera:"Camera", nav_cardio:"Exercise Rx", nav_breathe:"Breathing", nav_log:"My Log", nav_evidence:"Evidence", nav_install:"Install App",
   hero_tag:"Cardiopulmonary Rehabilitation DTx Prototype", hero_title:"From learning to breathe, to walking again",
-  hero_lead:"CardioBreath helps patients with heart disease and chronic respiratory conditions keep up breathing training and exercise rehab after discharge, designed to be used alongside a clinician's prescription.",
-  hero_cta1:"Try a breathing session", hero_cta2:"See the evidence",
+  hero_lead:"CardioBreath uses only your phone or laptop camera to help patients with heart disease and chronic respiratory conditions keep up breathing training and exercise rehab after discharge, designed to be used alongside a clinician's prescription.",
+  hero_cta1:"Try camera measurement", hero_cta2:"See the evidence",
   orb_ready_label:"Ready", orb_hero_ready_count:"Start below", orb_widget_ready_count:"Press start",
   about_kicker:"Why cardiopulmonary rehab", about_title:"Rehab isn't over when discharge happens — but follow-through often stops there",
-  about_lead:"Most patients discharged after a heart attack, heart failure, coronary artery disease, or COPD struggle to keep up with rehab programs at home. CardioBreath connects breathing training, exercise rehab, and symptom logging into one daily routine.",
+  about_lead:"Most patients discharged after a heart attack, heart failure, coronary artery disease, or COPD struggle to keep up with rehab programs at home. Using only a phone or laptop camera (no wearable needed), CardioBreath connects camera heart-rate measurement, a 30-second sit-to-stand test, dual-channel intensity prescription, and risk stratification with breathing training and symptom logging into one daily routine.",
   stat1_p:"Exercise-based cardiac rehabilitation has been shown to lower cardiovascular mortality risk (RR 0.74, 95% CI 0.64–0.86).", stat1_src:"Anderson et al., Cochrane Systematic Review, 2016",
   stat2_p:"A large share of eligible patients never actually attend outpatient cardiac rehab, highlighting the need for remote and digital alternatives.", stat2_src:"Cardiac rehabilitation literature review",
-  stat3_p:"Korea already has an approved respiratory rehab (COPD) digital therapeutic; China's NMPA had approved 235 devices meeting the DTx definition by end of 2024.", stat3_src:"Korea MFDS / npj Digital Medicine, 2025",
+  stat3_p:"The 30-second sit-to-stand test (STS) shows an effect size comparable to the 6-minute walk test (6MWT), which is why STS was chosen as this product's primary functional assessment.", stat3_src:"Thanakamchokchai et al., DIGITAL HEALTH, 2025",
+  stat4_p:"Telerehabilitation has a very low adverse-event rate (0.3%), the direct basis for this product's risk-stratification safety design.", stat4_src:"Shnitzer et al., JMIR Rehabilitation and Assistive Technologies, 2025",
+  mod1_num:"Module 01", mod1_title:"Camera Heart Rate (rPPG)", mod1_p:"Estimates heart rate from subtle color changes in the face captured by the camera — no wearable needed.",
+  mod2_num:"Module 02", mod2_title:"30s Sit-to-Stand (STS)", mod2_p:"Automatically counts sit-to-stand repetitions via frame-difference motion detection to assess lower-limb function.",
+  mod3_num:"Module 03", mod3_title:"Dual-Channel Prescription", mod3_p:"Provides both a heart-rate-reserve (HRR) target zone and a rating of perceived exertion (RPE), cross-checked.",
+  mod4_num:"Module 04", mod4_title:"Risk Stratification", mod4_p:"A pre-exercise self-assessment that classifies users into low/moderate/high risk with tailored guidance.",
   breathe_kicker:"Breathing Training", breathe_title:"Pick a rhythm and breathe along with the circle", breathe_lead:"Inhale as the circle grows, hold while it pauses, exhale as it shrinks. Even a few minutes a day, done consistently, is what matters.",
   pattern_box:"Box Breathing 4·4·4·4", pattern_relax:"Relaxing Breath 4·7·8", pattern_pursed:"Pursed-Lip 2·4",
   breathe_start:"Start Session", breathe_stop:"Stop",
   stat_sessions_label:"sessions completed today", stat_minutes_label:"minutes trained in total", stat_streak_label:"day streak",
-  cardio_kicker:"Cardiac Rehab", cardio_title:"How hard should today's exercise be?", cardio_lead:"Enter your age and resting heart rate to calculate a suggested exercise intensity zone. Always follow your clinician's prescribed range.",
-  hr_calc_title:"Target Heart Rate Calculator", age_label:"Age (years)", rhr_label:"Resting heart rate (bpm)",
+  camera_kicker:"Camera Measurement", camera_title:"No wearable needed — just a camera", camera_lead:"The following are research prototypes: the algorithms are currently cross-validated only on synthetic signals and have not been tested on humans. Results are for course-research demonstration only and must not be used for medical decisions.",
+  rppg_title:"Camera Heart Rate (rPPG)", rppg_placeholder:"—", rppg_unit:"bpm", rppg_start:"Start", rppg_stop:"Stop",
+  rppg_status_idle:"Press start, face the camera, and stay as still as possible", rppg_status_measuring:"Measuring… please keep still", rppg_status_low:"Low signal quality — move toward light and keep your face still", rppg_status_none:"—",
+  rppg_disclaimer:"rPPG is a research prototype (POS + spectral SNR gating), validated only on synthetic signals, not yet on humans; results must not be used for medical decisions.",
+  sts_title:"30-Second Sit-to-Stand (STS)", sts_start:"Start Test", sts_stop:"Stop", sts_save:"Save Result",
+  sts_time_idle:"30 s", sts_status_idle:"Press start — the camera will auto-count stand-ups and sit-downs",
+  sts_disclaimer:"Auto-counting is a research prototype (frame-difference, v1); v2 will upgrade to pose-estimation counting. Trust manual/clinician counts.",
+  sts_last:"Last record: none", sts_last_fmt:"Last record: {n} reps ({d})",
+  cardio_kicker:"Exercise Prescription", cardio_title:"Prescribe today's intensity on two channels",
+  cardio_lead:"Enter your age and resting heart rate to calculate a heart-rate-reserve (HRR) target zone, then choose a rating of perceived exertion (RPE) target. The two channels cross-check each other; always follow your clinician's prescribed range.",
+  hr_calc_title:"Dual-Channel Prescription (HRR + RPE)", age_label:"Age (years)", rhr_label:"Resting heart rate (bpm)",
   intensity_label_prefix:"Target intensity: ", zone_left_label:"Resting", zone_right_label:"Estimated max HR",
   zone_result_label:"Target heart rate zone:", zone_unit:"bpm (Karvonen formula)",
+  rpe_label:"Target perceived exertion (RPE, Borg 6–20)", rpe_result_label:"Target RPE:",
+  rpe_opt_lightest:"6–8 · Very light", rpe_opt_light:"9–11 · Light", rpe_opt_mod:"12–14 · Somewhat hard (recommended)", rpe_opt_hard:"15–16 · Hard", rpe_opt_veryhard:"17–20 · Very hard",
+  rpe_note:"RPE is especially useful when heart rate can't be measured reliably (e.g., beta-blockers).",
   hr_disclaimer:"This is a reference calculation only. If you take beta-blockers or other medication affecting heart rate response, please confirm with your doctor.",
   mwt_title:"6-Minute Walk Test (6MWT) Log", mwt_date_label:"Test date", mwt_distance_label:"Distance walked (m)", mwt_distance_placeholder:"e.g. 380",
   mwt_save:"Save Record", mwt_th_date:"Date", mwt_th_distance:"Distance",
+  risk_title:"Risk Stratification (pre-exercise)", risk_lead:"Please answer honestly before exercising. This stratification is a research-prototype demo and cannot replace professional medical assessment.",
+  risk_q1:"Have you been diagnosed with heart disease (e.g., CAD, heart failure, arrhythmia)?", risk_q2:"In the past 6 months, have you had a heart attack, heart surgery, or stroke?", risk_q3:"Do you get chest pain, marked shortness of breath, or fainting at rest or on mild exertion?", risk_q4:"Are you taking doctor-prescribed medication for heart disease?", risk_q5:"Do you have a chronic condition such as diabetes, hypertension, or chronic lung disease?", risk_q6:"Has a doctor advised you to limit or avoid certain exercise?",
+  risk_na:"—", risk_yes:"Yes", risk_no:"No", risk_eval:"Assess my risk", risk_idle:"Answer the questions above, then assess",
+  risk_result_low:"Low risk", risk_result_mid:"Moderate risk", risk_result_high:"High risk",
+  risk_advice_low:"You may do breathing training and moderate exercise at home per your clinician's prescription. Stop and seek help if you feel unwell.",
+  risk_advice_mid:"Get a clinician's assessment and an exercise prescription before exercising. Breathing training is generally safe, but follow medical advice.",
+  risk_advice_high:"Do not start exercise on your own. Consult a doctor soon; if you have chest pain, breathlessness, or fainting at rest, seek care immediately.",
+  risk_alert:"Please answer all questions first.",
   log_kicker:"My Log", log_title:"Take a minute to log how you feel today", log_lead:"Consistent check-ins become the most useful reference when talking with your care team.",
   mood_label:"Today's condition", checkin_hr_label:"Resting heart rate (bpm)", checkin_hr_placeholder:"e.g. 74",
   checkin_breath_label:"Breathlessness (mMRC 0–4)",
@@ -501,6 +711,8 @@ en:{
   log_card2_title:"Last 7 Days", checkin_th_date:"Date", checkin_th_mood:"Mood", checkin_th_hr:"Resting HR", checkin_th_breath:"Breathlessness",
   evidence_kicker:"Evidence", evidence_title:"Why extend cardiopulmonary rehab into a digital format", evidence_lead:"The following is drawn from domestic and international literature and regulatory status, forming the basis for this prototype.",
   ev1_title:"Effectiveness of exercise-based cardiac rehab", ev1_p:"A Cochrane systematic review in coronary heart disease patients found exercise-based cardiac rehab lowers cardiovascular mortality (RR 0.74) and readmission risk (RR 0.82).",
+  ev5_title:"Why the sit-to-stand test (STS) is the primary assessment", ev5_p:"A systematic review and meta-analysis of telerehabilitation found the 30-second sit-to-stand test comparable to the 6-minute walk test in effect size (SMD 0.88 vs 0.83), with STS being quicker and easier to do at home.",
+  ev6_title:"Safety of telerehabilitation", ev6_p:"A systematic review of telerehabilitation found an adverse-event rate of just 0.3%, the direct basis for the 'risk stratification + home training' safety design.",
   ev2_title:"Adherence to digital cardiac rehab", ev2_p:"A systematic review of digital therapeutics-based cardiac rehabilitation in heart failure patients found adherence above 85%, with no serious adverse events reported.", ev2_cite:"Digital therapeutics cardiac rehab systematic review (PMC9773765 series)",
   ev3_title:"Regulatory status in Korea & China", ev3_p:"Korea already has an approved respiratory rehab (COPD etc.) digital therapeutic. China's NMPA had approved 235 devices meeting the DTx definition by end of 2024, with neurological conditions the largest category.",
   ev4_title:"Low participation is a shared challenge", ev4_p:"Outpatient cardiac rehab is proven effective, yet actual participation remains low — remote and mobile formats are widely proposed as a viable alternative.", ev4_cite:"Digital health literature on cardiac rehabilitation",
@@ -509,35 +721,64 @@ en:{
   acc1_head:"Add to Home Screen on Android (Xiaomi, Huawei, Samsung, etc.)", acc1_body:"Open the menu in whatever browser you're using (stock browser, Chrome, etc.) and choose \"Add to Home Screen\" or \"Install App\". Xiaomi (HyperOS/MIUI) and Huawei (EMUI/HarmonyOS) browsers are also Chromium-based, so the steps are the same.",
   acc2_head:"Add to Home Screen on iOS (iPhone, iPad, Safari)", acc2_body:"Tap the Share button at the bottom of the screen and choose \"Add to Home Screen\". An icon will appear on your home screen and open full-screen like an app.",
   acc3_head:"Install as an app on desktop (Windows / macOS)", acc3_body:"Click the install icon on the right side of the address bar, or choose \"Install App\" from the browser menu, to run it in its own window like a standalone program.",
-  install_badge:"Roadmap", install_cta_p:"The next phase plans to carry this same interface and data structure into native iOS/Android apps, adding wearable heart-rate integration and a clinician dashboard.",
-  footer_note:"This website is a course-project prototype and has not received any medical device certification. Please consult your care team for medical decisions.", footer_refs_label:"References",
+  install_badge:"Roadmap",
+  road_v1_label:"v1 · current", road_v1:"Browser rPPG + frame-difference sit-to-stand counting + dual-channel prescription + risk stratification; algorithms validated only via 5-fold cross-validation on synthetic signals.",
+  road_v15_label:"v1.5 · winter 2026", road_v15:"Error measurement against a pulse oximeter, recording performance across lighting and skin-tone conditions.",
+  road_v2_label:"v2 · early 2027", road_v2:"Pose-estimation sit-to-stand counting, thoracic-movement respiratory-rate estimation, and migration to a native app.",
+  footer_note:"This website is a course-project research prototype and has not received any medical device certification; algorithms are currently validated only on synthetic signals and not yet on humans. Please consult your care team for medical decisions.", footer_refs_label:"References",
+  cam_denied:"Camera access was denied — please check permissions.", cam_unsupported:"Camera is not supported in this browser.",
   alert_distance:"Please enter the distance walked.", alert_hr:"Please enter a valid resting heart rate.", chart_no_data:"No records yet",
   unit_sec:"s", unit_min:" min", unit_day:" days", unit_dist:"m"
 },
 ko:{
   pageTitle:"카디오브레스 · 심장·호흡재활 디지털치료기기", pageDesc:"심장재활과 호흡재활을 연결한 디지털치료기기 프로토타입",
   brand:"카디오브레스",
-  nav_about:"소개", nav_breathe:"호흡훈련", nav_cardio:"심장재활", nav_log:"내 기록", nav_evidence:"근거자료", nav_install:"앱 설치",
+  nav_about:"소개", nav_camera:"카메라 측정", nav_cardio:"운동처방", nav_breathe:"호흡훈련", nav_log:"내 기록", nav_evidence:"근거자료", nav_install:"앱 설치",
   hero_tag:"심장·호흡재활 디지털치료기기 프로토타입", hero_title:"숨을 고르는 법부터, 다시 걷는 법까지",
-  hero_lead:"카디오브레스는 심장질환·호흡기질환 환자가 퇴원 후에도 호흡훈련과 운동재활을 이어갈 수 있도록 돕습니다. 의료진의 처방과 함께 사용하도록 설계되었습니다.",
-  hero_cta1:"호흡 훈련 체험하기", hero_cta2:"임상 근거 보기",
+  hero_lead:"카디오브레스는 스마트폰·노트북 카메라만으로 심장질환·호흡기질환 환자가 퇴원 후에도 호흡훈련과 운동재활을 이어갈 수 있도록 돕습니다. 의료진의 처방과 함께 사용하도록 설계되었습니다.",
+  hero_cta1:"카메라 측정 체험하기", hero_cta2:"임상 근거 보기",
   orb_ready_label:"준비", orb_hero_ready_count:"아래에서 시작하세요", orb_widget_ready_count:"시작을 눌러주세요",
   about_kicker:"WHY 심장·호흡재활", about_title:"재활은 끝나지 않았는데, 관리는 퇴원과 함께 멈춥니다",
-  about_lead:"심근경색·심부전·관상동맥질환, 만성폐쇄성폐질환(COPD) 등으로 입원한 환자 대부분은 퇴원 후 재활 프로그램 참여율이 낮습니다. 카디오브레스는 호흡훈련과 운동재활, 증상 기록을 하나의 흐름으로 연결합니다.",
+  about_lead:"심근경색·심부전·관상동맥질환, 만성폐쇄성폐질환(COPD) 등으로 입원한 환자 대부분은 퇴원 후 재활 프로그램 참여율이 낮습니다. 카디오브레스는 스마트폰·노트북 카메라만으로(웨어러블 불필요) 카메라 심박 측정, 30초 앉았다일어서기, 이중채널 강도처방, 위험 층화를 호흡훈련·증상 기록과 하나의 흐름으로 연결합니다.",
   stat1_p:"운동 기반 심장재활은 심혈관 사망 위험을 낮추는 것으로 보고됩니다(상대위험 0.74, 95% CI 0.64–0.86).", stat1_src:"Anderson 외, Cochrane Systematic Review, 2016",
   stat2_p:"심장재활 대상자의 상당수가 실제로는 프로그램에 참여하지 못하는 것으로 보고되어, 원격·디지털 접근의 필요성이 제기됩니다.", stat2_src:"심장재활 관련 문헌리뷰",
-  stat3_p:"국내에는 이미 호흡재활(COPD) 디지털치료기기 허가 선례가 있으며, 중국 NMPA는 2024년 말까지 235건의 디지털치료기기를 승인했습니다.", stat3_src:"식약처 / npj Digital Medicine, 2025",
+  stat3_p:"30초 앉았다일어서기(STS)는 6분 보행검사(6MWT)와 효과크기가 유사(SMD)하여, 본 제품의 1차 기능평가로 채택되었습니다.", stat3_src:"Thanakamchokchai 외, DIGITAL HEALTH, 2025",
+  stat4_p:"원격재활의 이상반응 발생률은 0.3%로 매우 낮아, 본 제품의 '위험 층화' 안전 설계의 직접 근거가 됩니다.", stat4_src:"Shnitzer 외, JMIR Rehabilitation and Assistive Technologies, 2025",
+  mod1_num:"모듈 01", mod1_title:"카메라 심박 (rPPG)", mod1_p:"카메라로 얼굴의 미세한 색 변화를 포착해 심박을 추정합니다. 웨어러블이 필요 없습니다.",
+  mod2_num:"모듈 02", mod2_title:"30초 앉았다일어서기 (STS)", mod2_p:"프레임 차분 동작 감지로 앉았다 일어난 횟수를 자동 계수해 하지 기능을 평가합니다.",
+  mod3_num:"모듈 03", mod3_title:"이중채널 강도처방", mod3_p:"심박예비율(HRR) 목표 구간과 주관적 운동강도(RPE)를 동시에 제시해 서로 교차 검증합니다.",
+  mod4_num:"모듈 04", mod4_title:"위험 층화", mod4_p:"운동 전 자가평가 설문으로 저/중/고 위험을 분류하고 안전 권고를 제공합니다.",
   breathe_kicker:"호흡훈련", breathe_title:"패턴을 고르고, 원을 따라 숨을 쉬어보세요", breathe_lead:"원이 커질 때 들이쉬고, 멈출 때 참고, 작아질 때 내쉽니다. 짧게라도 매일 반복하는 것이 핵심입니다.",
   pattern_box:"박스호흡 4·4·4·4", pattern_relax:"이완호흡 4·7·8", pattern_pursed:"입술오므리기 2·4",
   breathe_start:"훈련 시작", breathe_stop:"정지",
   stat_sessions_label:"오늘 완료한 세션", stat_minutes_label:"누적 훈련 분", stat_streak_label:"연속 훈련일",
-  cardio_kicker:"심장재활", cardio_title:"오늘 어느 정도로 움직이면 될까요", cardio_lead:"나이와 안정시 심박수를 입력하면 목표 운동강도 구간을 계산합니다. 실제 운동강도는 반드시 담당 의료진의 처방 범위를 따라야 합니다.",
-  hr_calc_title:"목표 심박수 계산기", age_label:"나이(세)", rhr_label:"안정시 심박수(회/분)",
+  camera_kicker:"카메라 측정", camera_title:"웨어러블 없이, 카메라만으로", camera_lead:"아래 기능은 연구 프로토타입입니다. 알고리즘은 현재 합성 신호로만 교차검증되었으며 인체 실측은 아직 진행되지 않았습니다. 결과는 연구 시연용이며 의료적 판단에 사용할 수 없습니다.",
+  rppg_title:"카메라 심박 (rPPG)", rppg_placeholder:"—", rppg_unit:"회/분", rppg_start:"측정 시작", rppg_stop:"정지",
+  rppg_status_idle:"시작을 누르고 얼굴을 카메라에 정면으로, 최대한 움직이지 마세요", rppg_status_measuring:"측정 중… 움직이지 마세요", rppg_status_low:"신호 품질 부족 — 빛 쪽으로 이동하고 얼굴을 고정하세요", rppg_status_none:"—",
+  rppg_disclaimer:"rPPG는 연구 프로토타입(POS·스펙트럴 SNR 게이팅)으로, 합성 신호로만 검증되었고 인체 실측 전입니다. 결과를 의료적 판단에 사용하지 마세요.",
+  sts_title:"30초 앉았다일어서기 (STS)", sts_start:"테스트 시작", sts_stop:"정지", sts_save:"결과 저장",
+  sts_time_idle:"30 초", sts_status_idle:"시작을 누르면 카메라가 일어나고 앉는 횟수를 자동으로 셉니다",
+  sts_disclaimer:"자동 계수는 연구 프로토타입(프레임 차분, v1)이며 v2에서 자세추정 계수로 업그레이드됩니다. 수동/의료진 계수를 기준으로 삼으세요.",
+  sts_last:"지난 기록: 없음", sts_last_fmt:"지난 기록: {n}회 ({d})",
+  cardio_kicker:"운동처방", cardio_title:"오늘의 운동강도를 두 채널로 처방하세요",
+  cardio_lead:"나이와 안정시 심박수를 입력해 심박예비율(HRR) 목표 구간을 계산하고, 주관적 운동강도(RPE) 목표를 선택하세요. 두 채널이 서로 교차 검증하며, 실제 강도는 반드시 담당 의료진의 처방을 따르세요.",
+  hr_calc_title:"이중채널 강도처방 (HRR + RPE)", age_label:"나이(세)", rhr_label:"안정시 심박수(회/분)",
   intensity_label_prefix:"목표 운동강도: ", zone_left_label:"안정시", zone_right_label:"최대심박수 추정",
   zone_result_label:"목표 심박수 구간:", zone_unit:"회/분 (카보넨 공식 기준)",
+  rpe_label:"목표 주관적 강도 (RPE, Borg 6–20)", rpe_result_label:"목표 RPE:",
+  rpe_opt_lightest:"6–8 · 아주 가벼움", rpe_opt_light:"9–11 · 가벼움", rpe_opt_mod:"12–14 · 약간 힘듦(권장)", rpe_opt_hard:"15–16 · 힘듦", rpe_opt_veryhard:"17–20 · 매우 힘듦",
+  rpe_note:"RPE는 심박수를 신뢰할 수 없을 때(예: 베타차단제 복용) 특히 유용합니다.",
   hr_disclaimer:"참고용 계산이며, 베타차단제 복용 등으로 심박수 반응이 다른 경우 반드시 담당의와 상의하세요.",
   mwt_title:"6분 보행검사(6MWT) 기록", mwt_date_label:"측정일", mwt_distance_label:"보행거리(m)", mwt_distance_placeholder:"예: 380",
   mwt_save:"기록 저장", mwt_th_date:"날짜", mwt_th_distance:"거리",
+  risk_title:"위험 층화 (운동 전 자가평가)", risk_lead:"운동을 시작하기 전에 솔직하게 답해주세요. 본 층화는 연구 프로토타입 시연용이며 전문 의료평가를 대체할 수 없습니다.",
+  risk_q1:"심장병(관상동맥질환·심부전·부정맥 등)을 진단받은 적이 있나요?", risk_q2:"최근 6개월 내 심근경색·심장수술·뇌졸중이 있었나요?", risk_q3:"안정 시나 가벼운 활동 중 가슴통증·심한 호흡곤란·실신이 있었나요?", risk_q4:"의사가 처방한 심장병 약을 복용 중인가요?", risk_q5:"당뇨·고혈압·만성폐질환 등 만성질환이 있나요?", risk_q6:"의사가 특정 운동을 제한하거나 피하라고 권한 적이 있나요?",
+  risk_na:"—", risk_yes:"예", risk_no:"아니오", risk_eval:"내 위험도 평가", risk_idle:"위 질문에 답한 후 평가를 누르세요",
+  risk_result_low:"저위험", risk_result_mid:"중간 위험", risk_result_high:"고위험",
+  risk_advice_low:"의료진 처방에 따라 집에서 호흡훈련과 중등도 운동을 할 수 있습니다. 불편하면 즉시 중단하고 진료받으세요.",
+  risk_advice_mid:"먼저 의료진의 평가와 운동처방을 받은 후 운동을 시작하세요. 호흡훈련은 대체로 안전하나 의료진 지시를 따르세요.",
+  risk_advice_high:"스스로 운동을 시작하지 마세요. 곧 의사와 상담하고, 안정 시 가슴통증·호흡곤란·실신이 있으면 즉시 진료받으세요.",
+  risk_alert:"모든 질문에 먼저 답해주세요.",
   log_kicker:"내 기록", log_title:"오늘의 컨디션을 1분만 기록해보세요", log_lead:"짧은 체크인이 쌓이면 담당 의료진과의 상담 자료가 됩니다.",
   mood_label:"오늘 컨디션", checkin_hr_label:"안정시 심박수(회/분)", checkin_hr_placeholder:"예: 74",
   checkin_breath_label:"호흡곤란 정도(mMRC 0–4)",
@@ -546,6 +787,8 @@ ko:{
   log_card2_title:"최근 7일 추이", checkin_th_date:"날짜", checkin_th_mood:"컨디션", checkin_th_hr:"안정시 HR", checkin_th_breath:"호흡곤란",
   evidence_kicker:"근거자료", evidence_title:"왜 심장·호흡재활을 디지털로 확장하는가", evidence_lead:"국내외 문헌과 규제 현황을 바탕으로 한 프로토타입 설계 근거입니다.",
   ev1_title:"운동 기반 심장재활의 효과", ev1_p:"관상동맥질환 환자 대상 Cochrane 체계적 문헌고찰에서 운동 기반 심장재활은 심혈관 사망 위험(RR 0.74)과 재입원 위험(RR 0.82)을 낮추는 것으로 보고되었습니다.",
+  ev5_title:"앉았다일어서기(STS)를 1차 평가로 택한 이유", ev5_p:"원격재활 체계적 문헌고찰·메타분석에서 30초 앉았다일어서기와 6분 보행검사는 효과크기가 유사(SMD 0.88 vs 0.83)하며, STS가 더 짧고 가정에서 수행하기 쉽습니다.",
+  ev6_title:"원격재활의 안전성", ev6_p:"원격재활 체계적 문헌고찰에서 이상반응 발생률은 0.3%에 불과하여, '위험 층화 + 가정 운동' 안전 설계의 직접 근거가 됩니다.",
   ev2_title:"디지털 심장재활의 순응도", ev2_p:"심부전 환자 대상 디지털치료 기반 심장재활 체계적 문헌고찰에서는 순응도가 85%를 넘고, 중대한 이상반응은 보고되지 않았습니다.", ev2_cite:"디지털치료 기반 심장재활 체계적 문헌고찰(PMC9773765 계열)",
   ev3_title:"한국·중국 규제 현황", ev3_p:"국내에는 이미 호흡재활(COPD 등) 디지털치료기기 허가 선례가 있으며, 중국 NMPA는 2024년 말까지 235건을 승인했고 신경계 질환 비중이 가장 높습니다.",
   ev4_title:"낮은 참여율이라는 공통 과제", ev4_p:"대면 심장재활은 효과가 입증되어 있음에도 대상자 다수가 참여하지 못하는 것으로 보고되며, 원격·모바일 방식이 대안으로 제시됩니다.", ev4_cite:"심장재활 디지털헬스 문헌리뷰",
@@ -554,8 +797,12 @@ ko:{
   acc1_head:"안드로이드(샤오미·화웨이·삼성 등)에서 홈 화면에 추가하기", acc1_body:"브라우저 메뉴(⋮)에서 '홈 화면에 추가' 또는 '앱 설치'를 선택하세요. 샤오미(HyperOS/MIUI)와 화웨이(EMUI/HarmonyOS) 브라우저도 크로미움 기반이라 동일하게 설치할 수 있습니다.",
   acc2_head:"iOS(아이폰·아이패드, Safari)에서 홈 화면에 추가하기", acc2_body:"공유 버튼을 누른 뒤 '홈 화면에 추가'를 선택하세요. 아이콘이 홈 화면에 생성되어 전체화면으로 실행됩니다.",
   acc3_head:"컴퓨터(윈도우·macOS)에서 앱으로 설치하기", acc3_body:"주소창 오른쪽의 설치 아이콘을 클릭하거나 브라우저 메뉴에서 '앱 설치'를 선택하세요.",
-  install_badge:"개발 로드맵", install_cta_p:"추후 이 화면과 기록 구조를 그대로 옮겨 네이티브 앱으로 배포하고, 웨어러블 심박 연동과 의료진 대시보드를 추가할 계획입니다.",
-  footer_note:"본 웹사이트는 과제용 프로토타입이며 의료기기 허가를 받지 않았습니다. 의학적 판단은 반드시 담당 의료진과 상의하세요.", footer_refs_label:"참고문헌",
+  install_badge:"개발 로드맵",
+  road_v1_label:"v1 · 현재", road_v1:"브라우저 rPPG + 프레임 차분 앉았다일어서기 + 이중채널 강도처방 + 위험 층화; 알고리즘은 합성 신호 5겹 교차검증만 수행.",
+  road_v15_label:"v1.5 · 2026 겨울", road_v15:"맥박산소측정기 대비 오차 측정, 조명·피부톤 조건별 성능 기록.",
+  road_v2_label:"v2 · 2027 초", road_v2:"자세추정 앉았다일어서기 계수, 흉곽 움직임 호흡수 추정, 네이티브 앱 전환.",
+  footer_note:"본 웹사이트는 과제용 연구 프로토타입이며 의료기기 허가를 받지 않았습니다. 알고리즘은 현재 합성 신호로만 검증되었고 인체 실측 전입니다. 의학적 판단은 반드시 담당 의료진과 상의하세요.", footer_refs_label:"참고문헌",
+  cam_denied:"카메라 접근이 거부되었습니다. 권한을 확인하세요.", cam_unsupported:"이 브라우저는 카메라를 지원하지 않습니다.",
   alert_distance:"보행거리를 입력해주세요.", alert_hr:"안정시 심박수를 올바르게 입력해주세요.", chart_no_data:"아직 기록이 없습니다",
   unit_sec:"초", unit_min:"분", unit_day:"일", unit_dist:"m"
 }
@@ -610,6 +857,10 @@ function applyLang(lang){
   }
   renderMwt();
   renderCheckins();
+  renderRpe();
+  renderStsLast();
+  renderRppgStatus();
+  renderStsStatus();
 }
 
 document.getElementById('langSwitch').addEventListener('click', function(e){
@@ -712,8 +963,10 @@ function renderBreathStats(){
 }
 renderBreathStats();
 
+/* ---- Dual-channel intensity (HRR + RPE) ---- */
 var ageInput=document.getElementById('ageInput'), rhrInput=document.getElementById('rhrInput');
 var lowSlider=document.getElementById('intensityLow'), highSlider=document.getElementById('intensityHigh');
+var rpeSelect=document.getElementById('rpeSelect');
 function updateZone(){
   var age = parseInt(ageInput.value,10) || 60;
   var rhr = parseInt(rhrInput.value,10) || 70;
@@ -726,9 +979,15 @@ function updateZone(){
   document.getElementById('zoneFill').style.left = low + '%';
   document.getElementById('zoneFill').style.width = (high-low) + '%';
 }
+function renderRpe(){
+  var sel = rpeSelect.options[rpeSelect.selectedIndex];
+  document.getElementById('rpeResult').textContent = sel ? sel.value : '12–14';
+}
 [ageInput, rhrInput, lowSlider, highSlider].forEach(function(el){ el.addEventListener('input', updateZone); });
-updateZone();
+rpeSelect.addEventListener('change', renderRpe);
+updateZone(); renderRpe();
 
+/* ---- 6MWT ---- */
 document.getElementById('mwtDate').value = todayKey();
 document.getElementById('mwtSave').addEventListener('click', function(){
   var date = document.getElementById('mwtDate').value || todayKey();
@@ -752,6 +1011,299 @@ function renderMwt(){
   drawBarChart('mwtChart', records.slice(-8).map(function(r){return r.distance;}), records.slice(-8).map(function(r){return r.date.slice(5);}), getCssVar('--teal'));
 }
 
+/* ---- Risk stratification ---- */
+var riskLevel = null;
+document.getElementById('riskEval').addEventListener('click', function(){
+  var answers = {};
+  var complete = true;
+  document.querySelectorAll('.risk-sel').forEach(function(s){
+    answers[s.getAttribute('data-q')] = s.value;
+    if(!s.value) complete = false;
+  });
+  if(!complete){ alert(I18N[currentLang].risk_alert); return; }
+  if(answers['3'] === 'yes') riskLevel = 'high';
+  else if(answers['1'] === 'yes' || answers['2'] === 'yes' || answers['6'] === 'yes') riskLevel = 'mid';
+  else riskLevel = 'low';
+  renderRisk();
+});
+function renderRisk(){
+  var box = document.getElementById('riskResult');
+  var title = document.getElementById('riskResultTitle');
+  var text = document.getElementById('riskResultText');
+  if(!riskLevel){ box.classList.remove('show'); return; }
+  box.className = 'risk-result show ' + riskLevel;
+  title.textContent = I18N[currentLang]['risk_result_' + riskLevel];
+  text.textContent = I18N[currentLang]['risk_advice_' + riskLevel];
+}
+
+/* ---- Camera helpers ---- */
+var camStream = null, camUsers = 0;
+function getCam(cb, errCb){
+  if(camStream){ cb(camStream); return; }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    if(errCb) errCb('unsupported'); return;
+  }
+  navigator.mediaDevices.getUserMedia({video:{facingMode:'user', width:{ideal:640}, height:{ideal:480}}, audio:false})
+    .then(function(s){ camStream = s; cb(s); })
+    .catch(function(){ if(errCb) errCb('denied'); });
+}
+function releaseCam(){
+  if(camUsers > 0) camUsers--;
+  if(camUsers <= 0 && camStream){ camStream.getTracks().forEach(function(t){ t.stop(); }); camStream = null; camUsers = 0; }
+}
+function camError(key){
+  var msg = I18N[currentLang]['cam_' + key] || I18N[currentLang].cam_denied;
+  return msg;
+}
+
+/* ---- rPPG ---- */
+var rppg = { running:false, raf:null, samples:[], t0:0, status:'idle', hr:null };
+var rppgCv = document.createElement('canvas'); rppgCv.width = 64; rppgCv.height = 48;
+var rppgCtx = rppgCv.getContext('2d', {willReadFrequently:true});
+
+function renderRppgStatus(){
+  var el = document.getElementById('rppgStatus');
+  el.textContent = I18N[currentLang]['rppg_status_' + rppg.status];
+}
+function setRppgStatus(s){ rppg.status = s; renderRppgStatus(); }
+
+document.getElementById('rppgStart').addEventListener('click', function(){
+  if(rppg.running) return;
+  stopSts(); // only one camera feature at a time
+  getCam(function(stream){
+    var v = document.getElementById('rppgVideo');
+    v.srcObject = stream; v.play().catch(function(){});
+    rppg.running = true; rppg.samples = []; rppg.t0 = performance.now(); rppg.hr = null;
+    camUsers++;
+    setRppgStatus('measuring');
+    document.getElementById('rppgValue').innerHTML = '<span data-i18n="rppg_placeholder">—</span> <small data-i18n="rppg_unit">'+I18N[currentLang].rppg_unit+'</small>';
+    document.getElementById('rppgValue').querySelector('span').textContent = I18N[currentLang].rppg_placeholder;
+    rppg.raf = requestAnimationFrame(rppgLoop);
+  }, function(key){
+    setRppgStatus('idle');
+    document.getElementById('rppgStatus').textContent = camError(key);
+  });
+});
+document.getElementById('rppgStop').addEventListener('click', function(){ stopRppg(); });
+function stopRppg(){
+  if(rppg.raf){ cancelAnimationFrame(rppg.raf); rppg.raf = null; }
+  if(rppg.running){ releaseCam(); rppg.running = false; }
+  var v = document.getElementById('rppgVideo'); if(v){ v.srcObject = null; }
+  rppg.samples = [];
+  clearWave();
+  document.getElementById('rppgValue').innerHTML = '<span data-i18n="rppg_placeholder">' + I18N[currentLang].rppg_placeholder + '</span> <small data-i18n="rppg_unit">' + I18N[currentLang].rppg_unit + '</small>';
+  setRppgStatus('idle');
+}
+function sampleGreenMean(v){
+  rppgCtx.drawImage(v, 0, 0, 64, 48);
+  var d = rppgCtx.getImageData(16, 12, 32, 24).data;
+  var s = 0, c = 0;
+  for(var i = 1; i < d.length; i += 4){ s += d[i]; c++; }
+  return c ? s / c : 0;
+}
+function pow2(n){ var p = 1; while(p < n) p <<= 1; return p; }
+function fftMag(re, im){
+  var N = re.length, j = 0;
+  for(var i = 0; i < N - 1; i++){
+    if(i < j){ var tr = re[i], ti = im[i]; re[i] = re[j]; im[i] = im[j]; re[j] = tr; im[j] = ti; }
+    var k = N >> 1;
+    while(k <= j){ j -= k; k >>= 1; }
+    j += k;
+  }
+  for(var len = 2; len <= N; len <<= 1){
+    var ang = -2 * Math.PI / len, wr = Math.cos(ang), wi = Math.sin(ang);
+    for(var i = 0; i < N; i += len){
+      var cr = 1, ci = 0;
+      for(var k2 = 0; k2 < len / 2; k2++){
+        var ir = i + k2, ii = i + k2 + len / 2;
+        var tr2 = cr * re[ii] - ci * im[ii];
+        var ti2 = cr * im[ii] + ci * re[ii];
+        re[ii] = re[ir] - tr2; im[ii] = im[ir] - ti2;
+        re[ir] += tr2; im[ir] += ti2;
+        var ncr = cr * wr - ci * wi; ci = cr * wi + ci * wr; cr = ncr;
+      }
+    }
+  }
+  var mag = new Array(N / 2);
+  for(var m = 0; m < N / 2; m++){ mag[m] = Math.sqrt(re[m] * re[m] + im[m] * im[m]); }
+  return mag;
+}
+function estimateHr(samples){
+  if(samples.length < 200) return null;
+  var fs = (samples.length - 1) / (samples[samples.length - 1].t - samples[0].t);
+  if(!isFinite(fs) || fs <= 0) return null;
+  var n = samples.length;
+  var y = samples.map(function(s){ return s.g; });
+  var mean = y.reduce(function(a,b){return a+b;},0) / n;
+  var mx = (n - 1) / 2, sx2 = 0, sxy = 0;
+  for(var i = 0; i < n; i++){ sx2 += (i - mx) * (i - mx); sxy += (i - mx) * (y[i] - mean); }
+  var slope = sxy / sx2, intercept = mean - slope * mx;
+  for(var i = 0; i < n; i++){ y[i] -= (slope * i + intercept); }
+  for(var i = 0; i < n; i++){ var w = 0.5 - 0.5 * Math.cos(2 * Math.PI * i / (n - 1)); y[i] *= w; }
+  var N = pow2(n);
+  var re = new Array(N).fill(0), im = new Array(N).fill(0);
+  for(var i = 0; i < n; i++){ re[i] = y[i]; }
+  var mag = fftMag(re, im);
+  var lo = Math.max(1, Math.floor(0.75 * N / fs)), hi = Math.min(Math.floor(N/2) - 1, Math.ceil(3.5 * N / fs));
+  var peak = lo, peakV = 0;
+  for(var b = lo; b <= hi; b++){ if(mag[b] > peakV){ peakV = mag[b]; peak = b; } }
+  var noiseSum = 0, noiseC = 0;
+  for(var b = lo; b <= hi; b++){ if(Math.abs(b - peak) > 2){ noiseSum += mag[b]; noiseC++; } }
+  var noise = noiseC ? noiseSum / noiseC : 1;
+  var snr = peakV / noise;
+  var hr = peak * fs / N * 60;
+  return { hr: hr, snr: snr, good: snr >= 1.5 && hr >= 45 && hr <= 180 };
+}
+function drawWave(samples){
+  var canvas = document.getElementById('rppgWave');
+  var dpr = window.devicePixelRatio || 1;
+  var rect = canvas.getBoundingClientRect();
+  if(rect.width === 0) return;
+  canvas.width = rect.width * dpr; canvas.height = 72 * dpr;
+  var ctx = canvas.getContext('2d'); ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, rect.width, 72);
+  var n = samples.length, W = rect.width, H = 72;
+  if(n < 2) return;
+  var last = samples.slice(-160);
+  var mn = Math.min.apply(null, last.map(function(s){return s.g;})), mx = Math.max.apply(null, last.map(function(s){return s.g;}));
+  if(mx - mn < 1){ mx = mn + 1; }
+  ctx.strokeStyle = getCssVar('--teal'); ctx.lineWidth = 1.6; ctx.beginPath();
+  last.forEach(function(s, i){
+    var x = (i / (last.length - 1)) * W;
+    var y = H - ((s.g - mn) / (mx - mn)) * (H - 8) - 4;
+    if(i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+}
+function clearWave(){
+  var canvas = document.getElementById('rppgWave');
+  var ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+function rppgLoop(ts){
+  if(!rppg.running){ return; }
+  var v = document.getElementById('rppgVideo');
+  if(v && v.readyState >= 2){
+    var g = sampleGreenMean(v);
+    var t = (ts - rppg.t0) / 1000;
+    rppg.samples.push({ t: t, g: g });
+    if(rppg.samples.length > 1200) rppg.samples.shift();
+    drawWave(rppg.samples);
+    if(rppg.samples.length >= 240 && rppg.samples.length % 12 === 0){
+      var res = estimateHr(rppg.samples);
+      if(res){
+        if(res.good){
+          rppg.hr = rppg.hr ? Math.round(rppg.hr * 0.6 + res.hr * 0.4) : Math.round(res.hr);
+          setRppgStatus('measuring');
+        } else {
+          rppg.hr = null;
+          setRppgStatus('low');
+        }
+        document.getElementById('rppgValue').innerHTML = (rppg.hr ? rppg.hr : '<span data-i18n="rppg_placeholder">' + I18N[currentLang].rppg_placeholder + '</span>') + ' <small data-i18n="rppg_unit">' + I18N[currentLang].rppg_unit + '</small>';
+      }
+    }
+  }
+  rppg.raf = requestAnimationFrame(rppgLoop);
+}
+
+/* ---- STS ---- */
+var sts = { running:false, raf:null, prev:null, count:0, endAt:0, lastSpike:0, ema:0, emaInit:false, saved:0 };
+var stsCv = document.createElement('canvas'); stsCv.width = 64; stsCv.height = 48;
+var stsCtx = stsCv.getContext('2d', {willReadFrequently:true});
+
+function renderStsStatus(){
+  document.getElementById('stsStatus').textContent = sts.running ? I18N[currentLang].sts_status_idle : I18N[currentLang].sts_status_idle;
+}
+document.getElementById('stsStart').addEventListener('click', function(){
+  if(sts.running) return;
+  stopRppg();
+  getCam(function(stream){
+    var v = document.getElementById('stsVideo');
+    v.srcObject = stream; v.play().catch(function(){});
+    sts.running = true; sts.prev = null; sts.count = 0; sts.ema = 0; sts.emaInit = false; sts.lastSpike = 0; sts.saved = 0;
+    sts.endAt = Date.now() + 30000;
+    camUsers++;
+    document.getElementById('stsCount').textContent = '0';
+    document.getElementById('stsStatus').textContent = I18N[currentLang].sts_status_idle;
+    sts.raf = requestAnimationFrame(stsLoop);
+  }, function(key){
+    document.getElementById('stsStatus').textContent = camError(key);
+  });
+});
+document.getElementById('stsStop').addEventListener('click', function(){ stopSts(); });
+function stopSts(finished){
+  if(sts.raf){ cancelAnimationFrame(sts.raf); sts.raf = null; }
+  if(sts.running){ releaseCam(); sts.running = false; }
+  var v = document.getElementById('stsVideo'); if(v){ v.srcObject = null; }
+  sts.prev = null;
+  document.getElementById('stsMeter').style.width = '0%';
+  document.getElementById('stsTime').textContent = I18N[currentLang].sts_time_idle;
+  document.getElementById('stsStatus').textContent = I18N[currentLang].sts_status_idle;
+  if(finished && sts.count > 0){
+    saveSts(sts.count);
+    document.getElementById('stsCount').textContent = sts.count;
+  }
+}
+function frameGray(v){
+  stsCtx.drawImage(v, 0, 0, 64, 48);
+  var d = stsCtx.getImageData(0, 0, 64, 48).data;
+  var g = new Float32Array(64 * 48);
+  for(var i = 0, p = 0; i < d.length; i += 4, p++){ g[p] = 0.3 * d[i] + 0.59 * d[i+1] + 0.11 * d[i+2]; }
+  return g;
+}
+function meanAbsDiff(a, b){
+  var s = 0; for(var i = 0; i < a.length; i++){ s += Math.abs(a[i] - b[i]); }
+  return s / a.length;
+}
+function stsLoop(){
+  if(!sts.running){ return; }
+  var remain = Math.max(0, sts.endAt - Date.now());
+  document.getElementById('stsTime').textContent = Math.ceil(remain / 1000) + ' ' + I18N[currentLang].unit_sec;
+  var v = document.getElementById('stsVideo');
+  if(v && v.readyState >= 2){
+    var gray = frameGray(v);
+    if(sts.prev){
+      var diff = meanAbsDiff(gray, sts.prev);
+      if(!sts.emaInit){ sts.ema = diff; sts.emaInit = true; }
+      else { sts.ema = sts.ema * 0.95 + diff * 0.05; }
+      var thresh = Math.max(sts.ema * 2.4, 6);
+      var now = Date.now();
+      if(diff > thresh && (now - sts.lastSpike) > 900){
+        sts.count++; sts.lastSpike = now;
+        document.getElementById('stsCount').textContent = sts.count;
+      }
+      document.getElementById('stsMeter').style.width = Math.min(100, diff / 30 * 100) + '%';
+    }
+    sts.prev = gray;
+  }
+  if(Date.now() >= sts.endAt){ stopSts(true); return; }
+  sts.raf = requestAnimationFrame(stsLoop);
+}
+document.getElementById('stsPlus').addEventListener('click', function(){
+  sts.count++; document.getElementById('stsCount').textContent = sts.count;
+});
+document.getElementById('stsMinus').addEventListener('click', function(){
+  sts.count = Math.max(0, sts.count - 1); document.getElementById('stsCount').textContent = sts.count;
+});
+document.getElementById('stsSave').addEventListener('click', function(){
+  if(sts.count > 0){ saveSts(sts.count); } else { alert(I18N[currentLang].alert_distance); }
+});
+function saveSts(n){
+  var recs = loadJSON('xf-sts-log', []);
+  recs.push({ date: todayKey(), reps: n });
+  saveJSON('xf-sts-log', recs);
+  renderStsLast();
+}
+function renderStsLast(){
+  var recs = loadJSON('xf-sts-log', []);
+  var el = document.getElementById('stsLast');
+  if(!recs.length){ el.textContent = I18N[currentLang].sts_last; return; }
+  var last = recs[recs.length - 1];
+  el.textContent = I18N[currentLang].sts_last_fmt.replace('{n}', last.reps).replace('{d}', last.date);
+}
+renderStsLast();
+
+/* ---- check-in ---- */
 var moodValue = 3;
 document.querySelectorAll('.mood-btn').forEach(function(btn){
   btn.addEventListener('click', function(){
