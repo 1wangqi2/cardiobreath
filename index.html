@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title id="pageTitle">心肺伴侣 · 心肺康复数字治疗产品</title>
+<meta id="pageDesc" name="description" content="连接心脏康复与呼吸康复的数字治疗产品原型">
+<meta name="theme-color" content="#2F6F63">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%232F6F63'/%3E%3Cpath d='M50 72C38 62 26 52 26 39a14 14 0 0 1 24-9 14 14 0 0 1 24 9c0 13-12 23-24 33Z' fill='%23F5F3EE'/%3E%3C/svg%3E">
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22CardioBreath%22%2C%22short_name%22%3A%22CardioBreath%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23EFF3F1%22%2C%22theme_color%22%3A%22%232F6F63%22%7D">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600&family=Noto+Serif+KR:wght@500;600&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EFF3F1; --surface:#FFFFFF; --surface-soft:#E4ECE8; --ink:#142520; --ink-soft:#4A5A55; --line:#D3DEDA;
+  --teal:#2F6F63; --teal-deep:#14342C; --teal-pale:#DCEAE5; --coral:#B54A3F; --coral-pale:#F5E1DE;
+  --amber:#C0872E; --amber-pale:#F3E7D2; --focus:#1E8FB0;
+  --radius-s:10px; --radius-m:18px; --radius-l:28px;
+  --font-display:'Fraunces','Noto Serif SC','Noto Serif KR',Georgia,serif;
+  --font-body:'Inter','Noto Sans SC','Noto Sans KR',-apple-system,'PingFang SC','Microsoft YaHei','Malgun Gothic',sans-serif;
+}
+:root:not([data-theme="light"]){
+  @media (prefers-color-scheme: dark){
+    --bg:#0F1E1A; --surface:#16302A; --surface-soft:#1D3B33; --ink:#EAF2EF; --ink-soft:#A9BFB8;
+    --line:#2A4A41; --teal:#6FC2AE; --teal-deep:#DDF0EA; --teal-pale:#1F4038;
+    --coral:#E38C7F; --coral-pale:#3A241F; --amber:#E3B368; --amber-pale:#3A2E17; --focus:#7FD4EE;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1E1A; --surface:#16302A; --surface-soft:#1D3B33; --ink:#EAF2EF; --ink-soft:#A9BFB8;
+  --line:#2A4A41; --teal:#6FC2AE; --teal-deep:#DDF0EA; --teal-pale:#1F4038;
+  --coral:#E38C7F; --coral-pale:#3A241F; --amber:#E3B368; --amber-pale:#3A2E17; --focus:#7FD4EE;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-body); line-height:1.7; -webkit-font-smoothing:antialiased;}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;} }
+a{color:inherit;} img,svg{display:block;} button{font-family:inherit;}
+:focus-visible{outline:2px solid var(--focus); outline-offset:2px;}
+.wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+@media (max-width:640px){.wrap{padding:0 18px;}}
+.topbar{position:sticky; top:0; z-index:50; background:color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);}
+.topbar-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 24px; max-width:1080px; margin:0 auto; gap:12px;}
+.brand{display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-weight:600; font-size:18px; text-decoration:none; color:var(--ink); white-space:nowrap;}
+.brand-mark{width:30px; height:30px; flex:none;}
+.navlinks{display:flex; align-items:center; gap:22px; list-style:none; margin:0; padding:0;}
+.navlinks a{text-decoration:none; font-size:14px; color:var(--ink-soft); font-weight:500; padding:6px 2px; border-bottom:2px solid transparent;}
+.navlinks a:hover{color:var(--ink); border-color:var(--teal);}
+.nav-actions{display:flex; align-items:center; gap:8px;}
+.icon-btn{width:36px; height:36px; border-radius:50%; border:1px solid var(--line); background:var(--surface); color:var(--ink); display:flex; align-items:center; justify-content:center; cursor:pointer; flex:none;}
+.lang-switch{display:flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; flex:none;}
+.lang-btn{padding:7px 10px; font-size:12.5px; font-weight:600; background:var(--surface); color:var(--ink-soft); border:none; cursor:pointer;}
+.lang-btn.active{background:var(--teal); color:#F5F3EE;}
+.menu-btn{display:none;}
+@media (max-width:860px){.navlinks{display:none;} .menu-btn{display:flex;}}
+.mobile-drawer{display:none; flex-direction:column; gap:2px; padding:8px 24px 18px; border-bottom:1px solid var(--line); background:var(--bg);}
+.mobile-drawer.open{display:flex;}
+.mobile-drawer a{padding:12px 6px; text-decoration:none; color:var(--ink); font-size:15px; border-bottom:1px solid var(--line);}
+.mobile-drawer a:last-child{border-bottom:none;}
+.hero{padding:64px 0 40px; display:grid; grid-template-columns:1.05fr 0.95fr; gap:48px; align-items:center;}
+@media (max-width:860px){.hero{grid-template-columns:1fr; padding:40px 0 24px;}}
+.eyebrow-tag{display:inline-flex; align-items:center; gap:8px; font-size:13px; color:var(--teal); background:var(--teal-pale); padding:6px 14px; border-radius:999px; font-weight:600; margin-bottom:22px;}
+.hero h1{font-family:var(--font-display); font-weight:600; font-size:clamp(28px,4.4vw,44px); line-height:1.3; margin:0 0 22px;}
+.hero p.lead{font-size:16.5px; color:var(--ink-soft); max-width:48ch; margin:0 0 30px;}
+.hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+.btn{display:inline-flex; align-items:center; gap:8px; padding:13px 24px; border-radius:999px; font-size:15px; font-weight:600; text-decoration:none; border:1px solid transparent; cursor:pointer;}
+.btn-primary{background:var(--teal); color:#F5F3EE;}
+.btn-primary:hover{background:var(--teal-deep); color:#F5F3EE;}
+.btn-outline{background:transparent; color:var(--ink); border-color:var(--line);}
+.btn-outline:hover{border-color:var(--teal); color:var(--teal);}
+.breath-stage{position:relative; aspect-ratio:1/1; max-width:360px; margin:0 auto; display:flex; align-items:center; justify-content:center;}
+.breath-ring{position:absolute; inset:0; border-radius:50%; border:1px solid var(--line);}
+.breath-ring.r2{inset:12%;} .breath-ring.r3{inset:24%;}
+.breath-orb{width:52%; height:52%; border-radius:50%; background:radial-gradient(circle at 35% 30%, var(--teal-pale), var(--teal) 78%); display:flex; align-items:center; justify-content:center; text-align:center; transform:scale(1); transition:transform 3.6s cubic-bezier(.45,0,.35,1), background-color .4s;}
+.breath-orb .phase-label{font-family:var(--font-display); color:#F5F3EE; font-size:19px; font-weight:600;}
+.breath-orb .phase-count{color:#F5F3EE; font-size:13px; opacity:.85; margin-top:4px;}
+section{padding:74px 0;}
+@media (max-width:640px){section{padding:52px 0;}}
+.section-head{max-width:640px; margin:0 0 40px;}
+.kicker{font-size:13px; letter-spacing:.02em; color:var(--teal); font-weight:600; margin:0 0 10px;}
+.section-head h2{font-family:var(--font-display); font-size:clamp(22px,3vw,30px); font-weight:600; margin:0 0 12px; line-height:1.4;}
+.section-head p{color:var(--ink-soft); font-size:15px; margin:0;}
+.stat-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+@media (max-width:760px){.stat-grid{grid-template-columns:1fr;}}
+.stat-card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-m); padding:26px;}
+.stat-card .num{font-family:var(--font-display); font-size:32px; font-weight:600; color:var(--teal-deep); display:block; margin-bottom:8px;}
+.stat-card p{margin:0; font-size:14px; color:var(--ink-soft);}
+.stat-card .src{display:block; margin-top:12px; font-size:12px; color:var(--ink-soft); opacity:.75;}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-l); padding:34px;}
+@media (max-width:640px){.card{padding:24px;}}
+.breathe-panel{display:grid; grid-template-columns:0.9fr 1.1fr; gap:36px; align-items:center;}
+@media (max-width:860px){.breathe-panel{grid-template-columns:1fr;}}
+.pattern-select{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px;}
+.pattern-btn{padding:9px 15px; border-radius:999px; border:1px solid var(--line); background:var(--surface); color:var(--ink-soft); font-size:13px; cursor:pointer; font-weight:500;}
+.pattern-btn.active{background:var(--teal); color:#F5F3EE; border-color:var(--teal);}
+.control-row{display:flex; gap:10px; align-items:center; margin-top:22px; flex-wrap:wrap;}
+.stat-line{display:flex; gap:22px; margin-top:18px; flex-wrap:wrap;}
+.stat-line div{font-size:13px; color:var(--ink-soft);}
+.stat-line strong{display:block; font-size:19px; color:var(--ink); font-family:var(--font-display);}
+label{display:block; font-size:13.5px; font-weight:600; color:var(--ink-soft); margin-bottom:6px;}
+input[type="number"], input[type="date"], input[type="text"], select, textarea{width:100%; padding:11px 13px; border-radius:var(--radius-s); border:1px solid var(--line); background:var(--bg); color:var(--ink); font-size:14.5px; font-family:inherit;}
+input[type="range"]{width:100%;}
+.form-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px;}
+@media (max-width:560px){.form-grid{grid-template-columns:1fr;}}
+.field{margin-bottom:14px;}
+.mood-row{display:flex; gap:10px;}
+.mood-btn{flex:1; padding:12px 0; border-radius:var(--radius-s); border:1px solid var(--line); background:var(--surface); font-size:22px; cursor:pointer;}
+.mood-btn.active{border-color:var(--teal); background:var(--teal-pale);}
+.zone-bar{position:relative; height:14px; border-radius:999px; background:var(--surface-soft); overflow:hidden; margin:18px 0 8px;}
+.zone-fill{position:absolute; top:0; bottom:0; left:0; background:linear-gradient(90deg,var(--teal-pale),var(--teal)); border-radius:999px;}
+.zone-labels{display:flex; justify-content:space-between; font-size:12px; color:var(--ink-soft);}
+.two-col{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+@media (max-width:800px){.two-col{grid-template-columns:1fr;}}
+table.log{width:100%; border-collapse:collapse; font-size:13.5px; margin-top:14px;}
+table.log th, table.log td{text-align:left; padding:8px 6px; border-bottom:1px solid var(--line);}
+table.log th{color:var(--ink-soft); font-weight:600; font-size:12.5px;}
+.badge{display:inline-block; font-size:12px; font-weight:600; padding:4px 10px; border-radius:999px; background:var(--amber-pale); color:var(--amber);}
+.evidence-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:18px;}
+@media (max-width:760px){.evidence-grid{grid-template-columns:1fr;}}
+.evidence-card{border:1px solid var(--line); border-radius:var(--radius-m); padding:22px; background:var(--surface);}
+.evidence-card h3{font-family:var(--font-display); font-size:17px; margin:0 0 8px; font-weight:600;}
+.evidence-card p{margin:0 0 10px; color:var(--ink-soft); font-size:14px;}
+.evidence-card .cite{font-size:12px; color:var(--ink-soft); opacity:.8;}
+.accordion{border:1px solid var(--line); border-radius:var(--radius-m); overflow:hidden; margin-bottom:12px; background:var(--surface);}
+.accordion-head{display:flex; align-items:center; justify-content:space-between; padding:18px 22px; cursor:pointer; font-weight:600; font-size:15px; gap:12px;}
+.accordion-body{padding:0 22px 20px; color:var(--ink-soft); font-size:14px; display:none;}
+.accordion.open .accordion-body{display:block;}
+.accordion-head .chev{transition:transform .25s; flex:none;}
+.accordion.open .accordion-head .chev{transform:rotate(180deg);}
+.install-cta{margin-top:26px; display:flex; gap:14px; flex-wrap:wrap; align-items:center; background:var(--teal-pale); border-radius:var(--radius-m); padding:22px;}
+footer{border-top:1px solid var(--line); padding:44px 0 60px; margin-top:20px;}
+.footer-grid{display:flex; justify-content:space-between; gap:30px; flex-wrap:wrap;}
+.footer-note{max-width:520px; font-size:13px; color:var(--ink-soft);}
+.footer-refs{font-size:12.5px; color:var(--ink-soft); margin-top:22px; line-height:1.9;}
+.footer-refs a{color:var(--ink-soft); text-decoration:underline;}
+.canvas-box{width:100%; height:150px;}
+canvas{width:100%; height:100%;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="#top" class="brand">
+      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10" fill="var(--teal)"/><path d="M20 29C15 24.4 10 19.8 10 14.6A5.6 5.6 0 0 1 20 11a5.6 5.6 0 0 1 10 3.6C30 19.8 25 24.4 20 29Z" fill="#F5F3EE"/></svg>
+      <span data-i18n="brand">心肺伴侣</span>
+    </a>
+    <ul class="navlinks">
+      <li><a href="#about" data-i18n="nav_about">项目介绍</a></li>
+      <li><a href="#breathe" data-i18n="nav_breathe">呼吸训练</a></li>
+      <li><a href="#cardio" data-i18n="nav_cardio">心脏康复</a></li>
+      <li><a href="#log" data-i18n="nav_log">我的记录</a></li>
+      <li><a href="#evidence" data-i18n="nav_evidence">循证依据</a></li>
+      <li><a href="#install" data-i18n="nav_install">安装应用</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="lang-switch" id="langSwitch">
+        <button class="lang-btn" data-lang="zh">中</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ko">한</button>
+      </div>
+      <button class="icon-btn" id="themeToggle" aria-label="Theme" title="Theme">◐</button>
+      <button class="icon-btn menu-btn" id="menuToggle" aria-label="Menu">☰</button>
+    </div>
+  </div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <a href="#about" data-i18n="nav_about">项目介绍</a>
+    <a href="#breathe" data-i18n="nav_breathe">呼吸训练</a>
+    <a href="#cardio" data-i18n="nav_cardio">心脏康复</a>
+    <a href="#log" data-i18n="nav_log">我的记录</a>
+    <a href="#evidence" data-i18n="nav_evidence">循证依据</a>
+    <a href="#install" data-i18n="nav_install">安装应用</a>
+  </div>
+</div>
+
+<div class="wrap" id="top">
+  <div class="hero">
+    <div>
+      <span class="eyebrow-tag" data-i18n="hero_tag">心肺康复数字治疗产品原型</span>
+      <h1 data-i18n="hero_title">从学会呼吸，到重新迈开脚步</h1>
+      <p class="lead" data-i18n="hero_lead">心肺伴侣帮助心脏病、慢性呼吸系统疾病患者在出院后也能坚持呼吸训练与运动康复，默认配合医生处方使用。</p>
+      <div class="hero-ctas">
+        <a href="#breathe" class="btn btn-primary" data-i18n="hero_cta1">体验呼吸训练</a>
+        <a href="#evidence" class="btn btn-outline" data-i18n="hero_cta2">查看循证依据</a>
+      </div>
+    </div>
+    <div class="breath-stage">
+      <div class="breath-ring r3"></div>
+      <div class="breath-ring r2"></div>
+      <div class="breath-orb" id="heroOrb">
+        <div>
+          <div class="phase-label" id="heroPhaseLabel" data-i18n="orb_ready_label">准备开始</div>
+          <div class="phase-count" id="heroPhaseCount" data-i18n="orb_hero_ready_count">请在下方开始训练</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="about" style="background:var(--surface-soft);">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker" data-i18n="about_kicker">为什么是心肺康复</p>
+      <h2 data-i18n="about_title">康复远没有结束，管理却常常止步于出院那一刻</h2>
+      <p data-i18n="about_lead">心肌梗死、心力衰竭、冠心病，以及慢性阻塞性肺疾病(COPD)等患者出院后，能坚持完成康复训练的比例普遍偏低。心肺伴侣希望把呼吸训练、运动康复和症状记录连接成一条完整的日常闭环。</p>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <span class="num">26%↓</span>
+        <p data-i18n="stat1_p">基于运动的心脏康复被证实可降低心血管死亡风险（相对风险 0.74，95% CI 0.64–0.86）。</p>
+        <span class="src" data-i18n="stat1_src">Anderson 等，Cochrane 系统综述，2016</span>
+      </div>
+      <div class="stat-card">
+        <span class="num">80%+</span>
+        <p data-i18n="stat2_p">大量符合条件的患者实际上并未参与院外心脏康复项目，凸显了远程与数字化方案的必要性。</p>
+        <span class="src" data-i18n="stat2_src">心脏康复相关文献综述</span>
+      </div>
+      <div class="stat-card">
+        <span class="num">235</span>
+        <p data-i18n="stat3_p">韩国已有呼吸康复(COPD)数字治疗器械的获批先例；中国NMPA截至2024年底已批准235款符合数字疗法定义的设备。</p>
+        <span class="src" data-i18n="stat3_src">韩国MFDS / npj Digital Medicine, 2025</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="breathe">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker" data-i18n="breathe_kicker">呼吸训练</p>
+      <h2 data-i18n="breathe_title">选择一种节奏，跟随圆环慢慢呼吸</h2>
+      <p data-i18n="breathe_lead">圆环变大时吸气，停留时屏息，缩小时呼气。哪怕每天只坚持几分钟，规律练习才是关键。</p>
+    </div>
+    <div class="card breathe-panel">
+      <div>
+        <div class="pattern-select" id="patternSelect">
+          <button class="pattern-btn active" data-pattern="box" data-i18n="pattern_box">箱式呼吸 4·4·4·4</button>
+          <button class="pattern-btn" data-pattern="relax" data-i18n="pattern_relax">放松呼吸 4·7·8</button>
+          <button class="pattern-btn" data-pattern="pursed" data-i18n="pattern_pursed">缩唇呼吸 2·4</button>
+        </div>
+        <p style="font-size:14px; color:var(--ink-soft); margin:0 0 6px;" id="patternDesc"></p>
+        <div class="control-row">
+          <button class="btn btn-primary" id="breatheStart" data-i18n="breathe_start">开始训练</button>
+          <button class="btn btn-outline" id="breatheStop" data-i18n="breathe_stop">停止</button>
+        </div>
+        <div class="stat-line">
+          <div><strong id="statSessions">0</strong><span data-i18n="stat_sessions_label">今日完成次数</span></div>
+          <div><strong id="statMinutes">0</strong><span data-i18n="stat_minutes_label">累计训练时长</span></div>
+          <div><strong id="statStreak">0</strong><span data-i18n="stat_streak_label">连续训练天数</span></div>
+        </div>
+      </div>
+      <div class="breath-stage" style="max-width:280px;">
+        <div class="breath-ring r3"></div>
+        <div class="breath-ring r2"></div>
+        <div class="breath-orb" id="widgetOrb">
+          <div>
+            <div class="phase-label" id="phaseLabel" data-i18n="orb_ready_label">准备开始</div>
+            <div class="phase-count" id="phaseCount" data-i18n="orb_widget_ready_count">点击开始</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cardio" style="background:var(--surface-soft);">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker" data-i18n="cardio_kicker">心脏康复</p>
+      <h2 data-i18n="cardio_title">今天，运动到什么强度比较合适</h2>
+      <p data-i18n="cardio_lead">输入年龄和静息心率，即可计算出建议的运动强度区间。实际运动强度请务必以主治医生的处方范围为准。</p>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <h3 style="font-family:var(--font-display); margin-top:0;" data-i18n="hr_calc_title">目标心率计算器</h3>
+        <div class="form-grid">
+          <div class="field"><label for="ageInput" data-i18n="age_label">年龄（岁）</label><input type="number" id="ageInput" min="18" max="100" value="60"></div>
+          <div class="field"><label for="rhrInput" data-i18n="rhr_label">静息心率（次/分）</label><input type="number" id="rhrInput" min="40" max="120" value="72"></div>
+        </div>
+        <div class="field">
+          <label for="intensityLow"><span data-i18n="intensity_label_prefix">目标运动强度：</span><span id="intensityOut">40–60%</span></label>
+          <input type="range" id="intensityLow" min="20" max="90" value="40">
+          <input type="range" id="intensityHigh" min="20" max="90" value="60">
+        </div>
+        <div class="zone-bar"><div class="zone-fill" id="zoneFill"></div></div>
+        <div class="zone-labels"><span data-i18n="zone_left_label">静息</span><span data-i18n="zone_right_label">最大心率推算</span></div>
+        <p style="font-size:14px; margin-top:16px;"><span data-i18n="zone_result_label">目标心率区间：</span> <strong id="zoneResult" style="font-family:var(--font-display); font-size:19px;">–</strong> <span data-i18n="zone_unit">次/分（基于卡沃宁公式）</span></p>
+        <p style="font-size:12.5px; color:var(--ink-soft);" data-i18n="hr_disclaimer">此为参考计算。若正在服用β受体阻滞剂等影响心率反应的药物，请务必与主治医生确认。</p>
+      </div>
+      <div class="card">
+        <h3 style="font-family:var(--font-display); margin-top:0;" data-i18n="mwt_title">6分钟步行测试(6MWT)记录</h3>
+        <div class="form-grid">
+          <div class="field"><label for="mwtDate" data-i18n="mwt_date_label">测试日期</label><input type="date" id="mwtDate"></div>
+          <div class="field"><label for="mwtDistance" data-i18n="mwt_distance_label">步行距离(米)</label><input type="number" id="mwtDistance" min="0" max="900" data-i18n-placeholder="mwt_distance_placeholder" placeholder="例如：380"></div>
+        </div>
+        <button class="btn btn-primary" id="mwtSave" style="width:100%; justify-content:center;" data-i18n="mwt_save">保存记录</button>
+        <div class="canvas-box"><canvas id="mwtChart"></canvas></div>
+        <table class="log" id="mwtTable"><thead><tr><th data-i18n="mwt_th_date">日期</th><th data-i18n="mwt_th_distance">距离</th></tr></thead><tbody></tbody></table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="log">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker" data-i18n="log_kicker">我的记录</p>
+      <h2 data-i18n="log_title">花一分钟，记录今天的身体状况</h2>
+      <p data-i18n="log_lead">坚持记录的点滴数据，会成为与医生沟通时最直接的参考资料。</p>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="field">
+          <label data-i18n="mood_label">今日状态</label>
+          <div class="mood-row" id="moodRow">
+            <button class="mood-btn" data-mood="1">😣</button>
+            <button class="mood-btn" data-mood="2">🙁</button>
+            <button class="mood-btn active" data-mood="3">😐</button>
+            <button class="mood-btn" data-mood="4">🙂</button>
+            <button class="mood-btn" data-mood="5">😄</button>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="field"><label for="checkinHr" data-i18n="checkin_hr_label">静息心率(次/分)</label><input type="number" id="checkinHr" min="40" max="160" data-i18n-placeholder="checkin_hr_placeholder" placeholder="例如：74"></div>
+          <div class="field">
+            <label for="checkinBreath" data-i18n="checkin_breath_label">呼吸困难程度(mMRC 0–4)</label>
+            <select id="checkinBreath">
+              <option value="0" data-i18n="breath_opt0">0 · 仅剧烈运动时</option>
+              <option value="1" data-i18n="breath_opt1">1 · 平地快走时</option>
+              <option value="2" selected data-i18n="breath_opt2">2 · 平地走路比同龄人慢</option>
+              <option value="3" data-i18n="breath_opt3">3 · 走不到100米就喘</option>
+              <option value="4" data-i18n="breath_opt4">4 · 穿脱衣服都喘</option>
+            </select>
+          </div>
+        </div>
+        <div class="field"><label for="checkinNote" data-i18n="checkin_note_label">备注（选填）</label><textarea id="checkinNote" rows="2" data-i18n-placeholder="checkin_note_placeholder" placeholder="今天如有特殊情况可以记录一下"></textarea></div>
+        <button class="btn btn-primary" id="checkinSave" data-i18n="checkin_save">保存打卡</button>
+      </div>
+      <div class="card">
+        <h3 style="font-family:var(--font-display); margin-top:0;" data-i18n="log_card2_title">最近7天趋势</h3>
+        <div class="canvas-box"><canvas id="checkinChart"></canvas></div>
+        <table class="log" id="checkinTable"><thead><tr><th data-i18n="checkin_th_date">日期</th><th data-i18n="checkin_th_mood">状态</th><th data-i18n="checkin_th_hr">静息心率</th><th data-i18n="checkin_th_breath">呼吸困难</th></tr></thead><tbody></tbody></table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="evidence" style="background:var(--surface-soft);">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker" data-i18n="evidence_kicker">循证依据</p>
+      <h2 data-i18n="evidence_title">为什么要把心肺康复延伸到数字化场景</h2>
+      <p data-i18n="evidence_lead">以下依据来自国内外文献与监管现状，是本原型设计的出发点。</p>
+    </div>
+    <div class="evidence-grid">
+      <div class="evidence-card">
+        <h3 data-i18n="ev1_title">运动基础心脏康复的疗效</h3>
+        <p data-i18n="ev1_p">针对冠心病患者的Cochrane系统综述显示，基于运动的心脏康复可降低心血管死亡风险(RR 0.74)和再住院风险(RR 0.82)。</p>
+        <span class="cite">Anderson L, et al. Cochrane Database Syst Rev, 2016. PubMed 26764059</span>
+      </div>
+      <div class="evidence-card">
+        <h3 data-i18n="ev2_title">数字化心脏康复的依从性</h3>
+        <p data-i18n="ev2_p">一项针对心力衰竭患者的数字治疗心脏康复系统综述显示，项目依从性可超过85%，且未报告严重不良反应。</p>
+        <span class="cite" data-i18n="ev2_cite">数字治疗心脏康复系统综述（PMC9773765系列）</span>
+      </div>
+      <div class="evidence-card">
+        <h3 data-i18n="ev3_title">韩国与中国的监管现状</h3>
+        <p data-i18n="ev3_p">韩国已有呼吸康复(COPD等)数字治疗器械获批先例；中国NMPA截至2024年底已批准235款符合数字疗法定义的设备，神经系统疾病占比最高。</p>
+        <span class="cite">npj Digital Medicine, 2025, s41746-025-01660-9</span>
+      </div>
+      <div class="evidence-card">
+        <h3 data-i18n="ev4_title">参与率低是共同难题</h3>
+        <p data-i18n="ev4_p">院外心脏康复疗效明确，但实际参与率普遍偏低，远程和移动化的康复方式被广泛认为是可行的替代路径。</p>
+        <span class="cite" data-i18n="ev4_cite">心脏康复数字健康相关文献综述</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="install">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker" data-i18n="install_kicker">从网站走向应用</p>
+      <h2 data-i18n="install_title">现在是网页，很快就能变成App</h2>
+      <p data-i18n="install_lead">本产品采用响应式网页设计，无论使用什么品牌或型号的设备，只要有浏览器就能直接打开使用。同一套界面和数据结构，后续可以直接迁移为原生应用。</p>
+    </div>
+    <div class="accordion open" data-acc>
+      <div class="accordion-head" data-acc-head><span data-i18n="acc1_head">安卓设备（小米、华为、三星等）添加到主屏幕</span><span class="chev">⌄</span></div>
+      <div class="accordion-body"><p data-i18n="acc1_body">打开本页面所用浏览器的菜单，选择"添加到主屏幕"或"安装应用"。小米(HyperOS/MIUI)和华为(EMUI/HarmonyOS)的自带浏览器同样基于Chromium内核，操作方式一致。</p></div>
+    </div>
+    <div class="accordion" data-acc>
+      <div class="accordion-head" data-acc-head><span data-i18n="acc2_head">苹果设备（iPhone、iPad，Safari）添加到主屏幕</span><span class="chev">⌄</span></div>
+      <div class="accordion-body"><p data-i18n="acc2_body">点击屏幕底部的分享按钮，选择"添加到主屏幕"。图标会出现在主屏幕上，全屏运行。</p></div>
+    </div>
+    <div class="accordion" data-acc>
+      <div class="accordion-head" data-acc-head><span data-i18n="acc3_head">电脑端（Windows / macOS）安装为应用</span><span class="chev">⌄</span></div>
+      <div class="accordion-body"><p data-i18n="acc3_body">点击地址栏右侧的安装图标，或在浏览器菜单中选择"安装应用"，即可像独立软件一样运行。</p></div>
+    </div>
+    <div class="install-cta">
+      <span class="badge" data-i18n="install_badge">开发路线图</span>
+      <p style="margin:0; font-size:14px; color:var(--ink-soft);" data-i18n="install_cta_p">下一阶段计划将当前界面与数据结构原样迁移，开发为原生iOS/Android应用，并加入可穿戴设备心率联动与医生端管理后台。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div>
+      <a href="#top" class="brand" style="margin-bottom:10px;">
+        <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10" fill="var(--teal)"/><path d="M20 29C15 24.4 10 19.8 10 14.6A5.6 5.6 0 0 1 20 11a5.6 5.6 0 0 1 10 3.6C30 19.8 25 24.4 20 29Z" fill="#F5F3EE"/></svg>
+        <span data-i18n="brand">心肺伴侣</span>
+      </a>
+      <p class="footer-note" data-i18n="footer_note">本网站为课程作业制作的产品原型，未获得任何医疗器械资质认证。涉及医学判断的内容，请务必咨询主治医生。</p>
+    </div>
+    <div class="footer-refs">
+      <div data-i18n="footer_refs_label">参考文献</div>
+      <div>Anderson L, et al. Exercise-based cardiac rehabilitation for coronary heart disease. Cochrane Database Syst Rev. 2016. <a href="https://pubmed.ncbi.nlm.nih.gov/26764059/" target="_blank" rel="noopener">PubMed 26764059</a></div>
+      <div>Efficacy and safety of digital therapeutics-based cardiac rehabilitation in heart failure patients. <a href="https://www.omicsdi.org/dataset/biostudies-literature/S-EPMC9773765" target="_blank" rel="noopener">PMC9773765</a></div>
+      <div>Analysis of NMPA-approved digital therapeutics in China. npj Digital Medicine, 2025, s41746-025-01660-9</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+var I18N = {
+zh:{
+  pageTitle:"心肺伴侣 · 心肺康复数字治疗产品", pageDesc:"连接心脏康复与呼吸康复的数字治疗产品原型",
+  brand:"心肺伴侣",
+  nav_about:"项目介绍", nav_breathe:"呼吸训练", nav_cardio:"心脏康复", nav_log:"我的记录", nav_evidence:"循证依据", nav_install:"安装应用",
+  hero_tag:"心肺康复数字治疗产品原型", hero_title:"从学会呼吸，到重新迈开脚步",
+  hero_lead:"心肺伴侣帮助心脏病、慢性呼吸系统疾病患者在出院后也能坚持呼吸训练与运动康复，默认配合医生处方使用。",
+  hero_cta1:"体验呼吸训练", hero_cta2:"查看循证依据",
+  orb_ready_label:"准备开始", orb_hero_ready_count:"请在下方开始训练", orb_widget_ready_count:"点击开始",
+  about_kicker:"为什么是心肺康复", about_title:"康复远没有结束，管理却常常止步于出院那一刻",
+  about_lead:"心肌梗死、心力衰竭、冠心病，以及慢性阻塞性肺疾病(COPD)等患者出院后，能坚持完成康复训练的比例普遍偏低。心肺伴侣希望把呼吸训练、运动康复和症状记录连接成一条完整的日常闭环。",
+  stat1_p:"基于运动的心脏康复被证实可降低心血管死亡风险（相对风险 0.74，95% CI 0.64–0.86）。", stat1_src:"Anderson 等，Cochrane 系统综述，2016",
+  stat2_p:"大量符合条件的患者实际上并未参与院外心脏康复项目，凸显了远程与数字化方案的必要性。", stat2_src:"心脏康复相关文献综述",
+  stat3_p:"韩国已有呼吸康复(COPD)数字治疗器械的获批先例；中国NMPA截至2024年底已批准235款符合数字疗法定义的设备。", stat3_src:"韩国MFDS / npj Digital Medicine, 2025",
+  breathe_kicker:"呼吸训练", breathe_title:"选择一种节奏，跟随圆环慢慢呼吸", breathe_lead:"圆环变大时吸气，停留时屏息，缩小时呼气。哪怕每天只坚持几分钟，规律练习才是关键。",
+  pattern_box:"箱式呼吸 4·4·4·4", pattern_relax:"放松呼吸 4·7·8", pattern_pursed:"缩唇呼吸 2·4",
+  breathe_start:"开始训练", breathe_stop:"停止",
+  stat_sessions_label:"今日完成次数", stat_minutes_label:"累计训练分钟", stat_streak_label:"连续训练天数",
+  cardio_kicker:"心脏康复", cardio_title:"今天，运动到什么强度比较合适", cardio_lead:"输入年龄和静息心率，即可计算出建议的运动强度区间。实际运动强度请务必以主治医生的处方范围为准。",
+  hr_calc_title:"目标心率计算器", age_label:"年龄（岁）", rhr_label:"静息心率（次/分）",
+  intensity_label_prefix:"目标运动强度：", zone_left_label:"静息", zone_right_label:"最大心率推算",
+  zone_result_label:"目标心率区间：", zone_unit:"次/分（基于卡沃宁公式）",
+  hr_disclaimer:"此为参考计算。若正在服用β受体阻滞剂等影响心率反应的药物，请务必与主治医生确认。",
+  mwt_title:"6分钟步行测试(6MWT)记录", mwt_date_label:"测试日期", mwt_distance_label:"步行距离(米)", mwt_distance_placeholder:"例如：380",
+  mwt_save:"保存记录", mwt_th_date:"日期", mwt_th_distance:"距离",
+  log_kicker:"我的记录", log_title:"花一分钟，记录今天的身体状况", log_lead:"坚持记录的点滴数据，会成为与医生沟通时最直接的参考资料。",
+  mood_label:"今日状态", checkin_hr_label:"静息心率(次/分)", checkin_hr_placeholder:"例如：74",
+  checkin_breath_label:"呼吸困难程度(mMRC 0–4)",
+  breath_opt0:"0 · 仅剧烈运动时", breath_opt1:"1 · 平地快走时", breath_opt2:"2 · 平地走路比同龄人慢", breath_opt3:"3 · 走不到100米就喘", breath_opt4:"4 · 穿脱衣服都喘",
+  checkin_note_label:"备注（选填）", checkin_note_placeholder:"今天如有特殊情况可以记录一下", checkin_save:"保存打卡",
+  log_card2_title:"最近7天趋势", checkin_th_date:"日期", checkin_th_mood:"状态", checkin_th_hr:"静息心率", checkin_th_breath:"呼吸困难",
+  evidence_kicker:"循证依据", evidence_title:"为什么要把心肺康复延伸到数字化场景", evidence_lead:"以下依据来自国内外文献与监管现状，是本原型设计的出发点。",
+  ev1_title:"运动基础心脏康复的疗效", ev1_p:"针对冠心病患者的Cochrane系统综述显示，基于运动的心脏康复可降低心血管死亡风险(RR 0.74)和再住院风险(RR 0.82)。",
+  ev2_title:"数字化心脏康复的依从性", ev2_p:"一项针对心力衰竭患者的数字治疗心脏康复系统综述显示，项目依从性可超过85%，且未报告严重不良反应。", ev2_cite:"数字治疗心脏康复系统综述（PMC9773765系列）",
+  ev3_title:"韩国与中国的监管现状", ev3_p:"韩国已有呼吸康复(COPD等)数字治疗器械获批先例；中国NMPA截至2024年底已批准235款符合数字疗法定义的设备，神经系统疾病占比最高。",
+  ev4_title:"参与率低是共同难题", ev4_p:"院外心脏康复疗效明确，但实际参与率普遍偏低，远程和移动化的康复方式被广泛认为是可行的替代路径。", ev4_cite:"心脏康复数字健康相关文献综述",
+  install_kicker:"从网站走向应用", install_title:"现在是网页，很快就能变成App",
+  install_lead:"本产品采用响应式网页设计，无论使用什么品牌或型号的设备，只要有浏览器就能直接打开使用。同一套界面和数据结构，后续可以直接迁移为原生应用。",
+  acc1_head:"安卓设备（小米、华为、三星等）添加到主屏幕", acc1_body:"打开本页面所用浏览器的菜单，选择“添加到主屏幕”或“安装应用”。小米(HyperOS/MIUI)和华为(EMUI/HarmonyOS)的自带浏览器同样基于Chromium内核，操作方式一致。",
+  acc2_head:"苹果设备（iPhone、iPad，Safari）添加到主屏幕", acc2_body:"点击屏幕底部的分享按钮，选择“添加到主屏幕”。图标会出现在主屏幕上，全屏运行。",
+  acc3_head:"电脑端（Windows / macOS）安装为应用", acc3_body:"点击地址栏右侧的安装图标，或在浏览器菜单中选择“安装应用”，即可像独立软件一样运行。",
+  install_badge:"开发路线图", install_cta_p:"下一阶段计划将当前界面与数据结构原样迁移，开发为原生iOS/Android应用，并加入可穿戴设备心率联动与医生端管理后台。",
+  footer_note:"本网站为课程作业制作的产品原型，未获得任何医疗器械资质认证。涉及医学判断的内容，请务必咨询主治医生。", footer_refs_label:"参考文献",
+  alert_distance:"请输入步行距离。", alert_hr:"请正确输入静息心率。", chart_no_data:"暂无记录",
+  unit_sec:"秒", unit_min:"分钟", unit_day:"天", unit_dist:"米"
+},
+en:{
+  pageTitle:"CardioBreath · Cardiopulmonary Rehabilitation DTx", pageDesc:"A digital therapeutics prototype connecting cardiac and respiratory rehabilitation",
+  brand:"CardioBreath",
+  nav_about:"About", nav_breathe:"Breathing", nav_cardio:"Cardiac Rehab", nav_log:"My Log", nav_evidence:"Evidence", nav_install:"Install App",
+  hero_tag:"Cardiopulmonary Rehabilitation DTx Prototype", hero_title:"From learning to breathe, to walking again",
+  hero_lead:"CardioBreath helps patients with heart disease and chronic respiratory conditions keep up breathing training and exercise rehab after discharge, designed to be used alongside a clinician's prescription.",
+  hero_cta1:"Try a breathing session", hero_cta2:"See the evidence",
+  orb_ready_label:"Ready", orb_hero_ready_count:"Start below", orb_widget_ready_count:"Press start",
+  about_kicker:"Why cardiopulmonary rehab", about_title:"Rehab isn't over when discharge happens — but follow-through often stops there",
+  about_lead:"Most patients discharged after a heart attack, heart failure, coronary artery disease, or COPD struggle to keep up with rehab programs at home. CardioBreath connects breathing training, exercise rehab, and symptom logging into one daily routine.",
+  stat1_p:"Exercise-based cardiac rehabilitation has been shown to lower cardiovascular mortality risk (RR 0.74, 95% CI 0.64–0.86).", stat1_src:"Anderson et al., Cochrane Systematic Review, 2016",
+  stat2_p:"A large share of eligible patients never actually attend outpatient cardiac rehab, highlighting the need for remote and digital alternatives.", stat2_src:"Cardiac rehabilitation literature review",
+  stat3_p:"Korea already has an approved respiratory rehab (COPD) digital therapeutic; China's NMPA had approved 235 devices meeting the DTx definition by end of 2024.", stat3_src:"Korea MFDS / npj Digital Medicine, 2025",
+  breathe_kicker:"Breathing Training", breathe_title:"Pick a rhythm and breathe along with the circle", breathe_lead:"Inhale as the circle grows, hold while it pauses, exhale as it shrinks. Even a few minutes a day, done consistently, is what matters.",
+  pattern_box:"Box Breathing 4·4·4·4", pattern_relax:"Relaxing Breath 4·7·8", pattern_pursed:"Pursed-Lip 2·4",
+  breathe_start:"Start Session", breathe_stop:"Stop",
+  stat_sessions_label:"sessions completed today", stat_minutes_label:"minutes trained in total", stat_streak_label:"day streak",
+  cardio_kicker:"Cardiac Rehab", cardio_title:"How hard should today's exercise be?", cardio_lead:"Enter your age and resting heart rate to calculate a suggested exercise intensity zone. Always follow your clinician's prescribed range.",
+  hr_calc_title:"Target Heart Rate Calculator", age_label:"Age (years)", rhr_label:"Resting heart rate (bpm)",
+  intensity_label_prefix:"Target intensity: ", zone_left_label:"Resting", zone_right_label:"Estimated max HR",
+  zone_result_label:"Target heart rate zone:", zone_unit:"bpm (Karvonen formula)",
+  hr_disclaimer:"This is a reference calculation only. If you take beta-blockers or other medication affecting heart rate response, please confirm with your doctor.",
+  mwt_title:"6-Minute Walk Test (6MWT) Log", mwt_date_label:"Test date", mwt_distance_label:"Distance walked (m)", mwt_distance_placeholder:"e.g. 380",
+  mwt_save:"Save Record", mwt_th_date:"Date", mwt_th_distance:"Distance",
+  log_kicker:"My Log", log_title:"Take a minute to log how you feel today", log_lead:"Consistent check-ins become the most useful reference when talking with your care team.",
+  mood_label:"Today's condition", checkin_hr_label:"Resting heart rate (bpm)", checkin_hr_placeholder:"e.g. 74",
+  checkin_breath_label:"Breathlessness (mMRC 0–4)",
+  breath_opt0:"0 · Only with strenuous exercise", breath_opt1:"1 · When hurrying on level ground", breath_opt2:"2 · Walks slower than peers on level ground", breath_opt3:"3 · Stops for breath after ~100m", breath_opt4:"4 · Too breathless to dress",
+  checkin_note_label:"Notes (optional)", checkin_note_placeholder:"Anything notable today?", checkin_save:"Save Check-in",
+  log_card2_title:"Last 7 Days", checkin_th_date:"Date", checkin_th_mood:"Mood", checkin_th_hr:"Resting HR", checkin_th_breath:"Breathlessness",
+  evidence_kicker:"Evidence", evidence_title:"Why extend cardiopulmonary rehab into a digital format", evidence_lead:"The following is drawn from domestic and international literature and regulatory status, forming the basis for this prototype.",
+  ev1_title:"Effectiveness of exercise-based cardiac rehab", ev1_p:"A Cochrane systematic review in coronary heart disease patients found exercise-based cardiac rehab lowers cardiovascular mortality (RR 0.74) and readmission risk (RR 0.82).",
+  ev2_title:"Adherence to digital cardiac rehab", ev2_p:"A systematic review of digital therapeutics-based cardiac rehabilitation in heart failure patients found adherence above 85%, with no serious adverse events reported.", ev2_cite:"Digital therapeutics cardiac rehab systematic review (PMC9773765 series)",
+  ev3_title:"Regulatory status in Korea & China", ev3_p:"Korea already has an approved respiratory rehab (COPD etc.) digital therapeutic. China's NMPA had approved 235 devices meeting the DTx definition by end of 2024, with neurological conditions the largest category.",
+  ev4_title:"Low participation is a shared challenge", ev4_p:"Outpatient cardiac rehab is proven effective, yet actual participation remains low — remote and mobile formats are widely proposed as a viable alternative.", ev4_cite:"Digital health literature on cardiac rehabilitation",
+  install_kicker:"From Website to App", install_title:"It's a website today — an app is next",
+  install_lead:"CardioBreath is built as a responsive web app, so it opens in any browser regardless of device brand or OS. The same interface and data structure are designed to carry over directly into a native app later.",
+  acc1_head:"Add to Home Screen on Android (Xiaomi, Huawei, Samsung, etc.)", acc1_body:"Open the menu in whatever browser you're using (stock browser, Chrome, etc.) and choose \"Add to Home Screen\" or \"Install App\". Xiaomi (HyperOS/MIUI) and Huawei (EMUI/HarmonyOS) browsers are also Chromium-based, so the steps are the same.",
+  acc2_head:"Add to Home Screen on iOS (iPhone, iPad, Safari)", acc2_body:"Tap the Share button at the bottom of the screen and choose \"Add to Home Screen\". An icon will appear on your home screen and open full-screen like an app.",
+  acc3_head:"Install as an app on desktop (Windows / macOS)", acc3_body:"Click the install icon on the right side of the address bar, or choose \"Install App\" from the browser menu, to run it in its own window like a standalone program.",
+  install_badge:"Roadmap", install_cta_p:"The next phase plans to carry this same interface and data structure into native iOS/Android apps, adding wearable heart-rate integration and a clinician dashboard.",
+  footer_note:"This website is a course-project prototype and has not received any medical device certification. Please consult your care team for medical decisions.", footer_refs_label:"References",
+  alert_distance:"Please enter the distance walked.", alert_hr:"Please enter a valid resting heart rate.", chart_no_data:"No records yet",
+  unit_sec:"s", unit_min:" min", unit_day:" days", unit_dist:"m"
+},
+ko:{
+  pageTitle:"카디오브레스 · 심장·호흡재활 디지털치료기기", pageDesc:"심장재활과 호흡재활을 연결한 디지털치료기기 프로토타입",
+  brand:"카디오브레스",
+  nav_about:"소개", nav_breathe:"호흡훈련", nav_cardio:"심장재활", nav_log:"내 기록", nav_evidence:"근거자료", nav_install:"앱 설치",
+  hero_tag:"심장·호흡재활 디지털치료기기 프로토타입", hero_title:"숨을 고르는 법부터, 다시 걷는 법까지",
+  hero_lead:"카디오브레스는 심장질환·호흡기질환 환자가 퇴원 후에도 호흡훈련과 운동재활을 이어갈 수 있도록 돕습니다. 의료진의 처방과 함께 사용하도록 설계되었습니다.",
+  hero_cta1:"호흡 훈련 체험하기", hero_cta2:"임상 근거 보기",
+  orb_ready_label:"준비", orb_hero_ready_count:"아래에서 시작하세요", orb_widget_ready_count:"시작을 눌러주세요",
+  about_kicker:"WHY 심장·호흡재활", about_title:"재활은 끝나지 않았는데, 관리는 퇴원과 함께 멈춥니다",
+  about_lead:"심근경색·심부전·관상동맥질환, 만성폐쇄성폐질환(COPD) 등으로 입원한 환자 대부분은 퇴원 후 재활 프로그램 참여율이 낮습니다. 카디오브레스는 호흡훈련과 운동재활, 증상 기록을 하나의 흐름으로 연결합니다.",
+  stat1_p:"운동 기반 심장재활은 심혈관 사망 위험을 낮추는 것으로 보고됩니다(상대위험 0.74, 95% CI 0.64–0.86).", stat1_src:"Anderson 외, Cochrane Systematic Review, 2016",
+  stat2_p:"심장재활 대상자의 상당수가 실제로는 프로그램에 참여하지 못하는 것으로 보고되어, 원격·디지털 접근의 필요성이 제기됩니다.", stat2_src:"심장재활 관련 문헌리뷰",
+  stat3_p:"국내에는 이미 호흡재활(COPD) 디지털치료기기 허가 선례가 있으며, 중국 NMPA는 2024년 말까지 235건의 디지털치료기기를 승인했습니다.", stat3_src:"식약처 / npj Digital Medicine, 2025",
+  breathe_kicker:"호흡훈련", breathe_title:"패턴을 고르고, 원을 따라 숨을 쉬어보세요", breathe_lead:"원이 커질 때 들이쉬고, 멈출 때 참고, 작아질 때 내쉽니다. 짧게라도 매일 반복하는 것이 핵심입니다.",
+  pattern_box:"박스호흡 4·4·4·4", pattern_relax:"이완호흡 4·7·8", pattern_pursed:"입술오므리기 2·4",
+  breathe_start:"훈련 시작", breathe_stop:"정지",
+  stat_sessions_label:"오늘 완료한 세션", stat_minutes_label:"누적 훈련 분", stat_streak_label:"연속 훈련일",
+  cardio_kicker:"심장재활", cardio_title:"오늘 어느 정도로 움직이면 될까요", cardio_lead:"나이와 안정시 심박수를 입력하면 목표 운동강도 구간을 계산합니다. 실제 운동강도는 반드시 담당 의료진의 처방 범위를 따라야 합니다.",
+  hr_calc_title:"목표 심박수 계산기", age_label:"나이(세)", rhr_label:"안정시 심박수(회/분)",
+  intensity_label_prefix:"목표 운동강도: ", zone_left_label:"안정시", zone_right_label:"최대심박수 추정",
+  zone_result_label:"목표 심박수 구간:", zone_unit:"회/분 (카보넨 공식 기준)",
+  hr_disclaimer:"참고용 계산이며, 베타차단제 복용 등으로 심박수 반응이 다른 경우 반드시 담당의와 상의하세요.",
+  mwt_title:"6분 보행검사(6MWT) 기록", mwt_date_label:"측정일", mwt_distance_label:"보행거리(m)", mwt_distance_placeholder:"예: 380",
+  mwt_save:"기록 저장", mwt_th_date:"날짜", mwt_th_distance:"거리",
+  log_kicker:"내 기록", log_title:"오늘의 컨디션을 1분만 기록해보세요", log_lead:"짧은 체크인이 쌓이면 담당 의료진과의 상담 자료가 됩니다.",
+  mood_label:"오늘 컨디션", checkin_hr_label:"안정시 심박수(회/분)", checkin_hr_placeholder:"예: 74",
+  checkin_breath_label:"호흡곤란 정도(mMRC 0–4)",
+  breath_opt0:"0 · 힘든 운동에서만", breath_opt1:"1 · 평지 빨리 걸을 때", breath_opt2:"2 · 평지에서 또래보다 느림", breath_opt3:"3 · 100m 이내 숨참", breath_opt4:"4 · 옷 갈아입어도 숨참",
+  checkin_note_label:"메모(선택)", checkin_note_placeholder:"오늘 특이사항이 있다면 적어주세요", checkin_save:"체크인 저장",
+  log_card2_title:"최근 7일 추이", checkin_th_date:"날짜", checkin_th_mood:"컨디션", checkin_th_hr:"안정시 HR", checkin_th_breath:"호흡곤란",
+  evidence_kicker:"근거자료", evidence_title:"왜 심장·호흡재활을 디지털로 확장하는가", evidence_lead:"국내외 문헌과 규제 현황을 바탕으로 한 프로토타입 설계 근거입니다.",
+  ev1_title:"운동 기반 심장재활의 효과", ev1_p:"관상동맥질환 환자 대상 Cochrane 체계적 문헌고찰에서 운동 기반 심장재활은 심혈관 사망 위험(RR 0.74)과 재입원 위험(RR 0.82)을 낮추는 것으로 보고되었습니다.",
+  ev2_title:"디지털 심장재활의 순응도", ev2_p:"심부전 환자 대상 디지털치료 기반 심장재활 체계적 문헌고찰에서는 순응도가 85%를 넘고, 중대한 이상반응은 보고되지 않았습니다.", ev2_cite:"디지털치료 기반 심장재활 체계적 문헌고찰(PMC9773765 계열)",
+  ev3_title:"한국·중국 규제 현황", ev3_p:"국내에는 이미 호흡재활(COPD 등) 디지털치료기기 허가 선례가 있으며, 중국 NMPA는 2024년 말까지 235건을 승인했고 신경계 질환 비중이 가장 높습니다.",
+  ev4_title:"낮은 참여율이라는 공통 과제", ev4_p:"대면 심장재활은 효과가 입증되어 있음에도 대상자 다수가 참여하지 못하는 것으로 보고되며, 원격·모바일 방식이 대안으로 제시됩니다.", ev4_cite:"심장재활 디지털헬스 문헌리뷰",
+  install_kicker:"앱으로 만나기", install_title:"지금은 웹, 곧 앱이 됩니다",
+  install_lead:"반응형 웹앱으로 제작되어 있어, 브랜드나 기기와 상관없이 브라우저만 있으면 실행됩니다. 같은 화면과 데이터 구조를 그대로 활용해 이후 네이티브 앱으로 전환하도록 설계했습니다.",
+  acc1_head:"안드로이드(샤오미·화웨이·삼성 등)에서 홈 화면에 추가하기", acc1_body:"브라우저 메뉴(⋮)에서 '홈 화면에 추가' 또는 '앱 설치'를 선택하세요. 샤오미(HyperOS/MIUI)와 화웨이(EMUI/HarmonyOS) 브라우저도 크로미움 기반이라 동일하게 설치할 수 있습니다.",
+  acc2_head:"iOS(아이폰·아이패드, Safari)에서 홈 화면에 추가하기", acc2_body:"공유 버튼을 누른 뒤 '홈 화면에 추가'를 선택하세요. 아이콘이 홈 화면에 생성되어 전체화면으로 실행됩니다.",
+  acc3_head:"컴퓨터(윈도우·macOS)에서 앱으로 설치하기", acc3_body:"주소창 오른쪽의 설치 아이콘을 클릭하거나 브라우저 메뉴에서 '앱 설치'를 선택하세요.",
+  install_badge:"개발 로드맵", install_cta_p:"추후 이 화면과 기록 구조를 그대로 옮겨 네이티브 앱으로 배포하고, 웨어러블 심박 연동과 의료진 대시보드를 추가할 계획입니다.",
+  footer_note:"본 웹사이트는 과제용 프로토타입이며 의료기기 허가를 받지 않았습니다. 의학적 판단은 반드시 담당 의료진과 상의하세요.", footer_refs_label:"참고문헌",
+  alert_distance:"보행거리를 입력해주세요.", alert_hr:"안정시 심박수를 올바르게 입력해주세요.", chart_no_data:"아직 기록이 없습니다",
+  unit_sec:"초", unit_min:"분", unit_day:"일", unit_dist:"m"
+}
+};
+
+var PATTERNS_I18N = {
+  zh:{ box:{phases:[["吸气",4],["屏息",4],["呼气",4],["屏息",4]], desc:"吸气4秒 · 屏息4秒 · 呼气4秒 · 屏息4秒。是缓解焦虑、稳定自主神经常用的基础呼吸法。"},
+       relax:{phases:[["吸气",4],["屏息",7],["呼气",8]], desc:"吸气4秒 · 屏息7秒 · 呼气8秒。适合睡前或需要放松紧张情绪时使用的呼吸法。"},
+       pursed:{phases:[["用鼻吸气",2],["缩唇缓慢呼气",4]], desc:"用鼻子吸气2秒，缩唇缓慢呼气4秒。是缓解呼吸困难常用的呼吸训练方法。"} },
+  en:{ box:{phases:[["Inhale",4],["Hold",4],["Exhale",4],["Hold",4]], desc:"Inhale 4s · Hold 4s · Exhale 4s · Hold 4s. A foundational pattern commonly used to ease anxiety and stabilize the autonomic nervous system."},
+       relax:{phases:[["Inhale",4],["Hold",7],["Exhale",8]], desc:"Inhale 4s · Hold 7s · Exhale 8s. Often used before sleep or to ease tension."},
+       pursed:{phases:[["Inhale (nose)",2],["Exhale (pursed lips)",4]], desc:"Inhale through the nose for 2s, then exhale slowly through pursed lips for 4s. Commonly used to ease shortness of breath."} },
+  ko:{ box:{phases:[["들이쉬기",4],["멈추기",4],["내쉬기",4],["멈추기",4]], desc:"들숨 4초 · 정지 4초 · 날숨 4초 · 정지 4초. 불안감 완화와 자율신경 안정에 흔히 쓰이는 기본 패턴입니다."},
+       relax:{phases:[["들이쉬기",4],["멈추기",7],["내쉬기",8]], desc:"들숨 4초 · 정지 7초 · 날숨 8초. 취침 전이나 긴장 완화가 필요할 때 활용하는 이완호흡 패턴입니다."},
+       pursed:{phases:[["코로 들이쉬기",2],["입술 오므려 내쉬기",4]], desc:"코로 2초 들이쉬고 입술을 오므려 4초간 천천히 내쉽니다. 호흡곤란 완화에 흔히 활용되는 호흡법입니다."} }
+};
+
+var currentLang = 'zh';
+var currentPattern = 'box';
+
+function detectLang(){
+  try{ var saved = localStorage.getItem('xf-lang'); if(saved && I18N[saved]) return saved; }catch(e){}
+  var nav = (navigator.language || 'en').toLowerCase();
+  if(nav.indexOf('zh') === 0) return 'zh';
+  if(nav.indexOf('ko') === 0) return 'ko';
+  return 'en';
+}
+
+function applyLang(lang){
+  if(!I18N[lang]) lang = 'zh';
+  currentLang = lang;
+  var dict = I18N[lang];
+  document.documentElement.lang = (lang === 'zh' ? 'zh-Hans' : lang);
+  document.getElementById('pageTitle').textContent = dict.pageTitle;
+  document.title = dict.pageTitle;
+  document.getElementById('pageDesc').setAttribute('content', dict.pageDesc);
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var key = el.getAttribute('data-i18n');
+    if(dict[key] !== undefined) el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){
+    var key = el.getAttribute('data-i18n-placeholder');
+    if(dict[key] !== undefined) el.setAttribute('placeholder', dict[key]);
+  });
+  document.querySelectorAll('.lang-btn').forEach(function(btn){
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  document.getElementById('patternDesc').textContent = PATTERNS_I18N[lang][currentPattern].desc;
+  try{ localStorage.setItem('xf-lang', lang); }catch(e){}
+  if(!breathRunning){
+    setOrbState(dict.orb_ready_label, dict.orb_widget_ready_count, 1, true);
+  }
+  renderMwt();
+  renderCheckins();
+}
+
+document.getElementById('langSwitch').addEventListener('click', function(e){
+  var btn = e.target.closest('.lang-btn');
+  if(!btn) return;
+  applyLang(btn.getAttribute('data-lang'));
+});
+
+try{ var savedTheme = localStorage.getItem('xf-theme'); if(savedTheme){ document.documentElement.setAttribute('data-theme', savedTheme); } }catch(e){}
+var themeBtn = document.getElementById('themeToggle');
+themeBtn.addEventListener('click', function(){
+  var cur = document.documentElement.getAttribute('data-theme');
+  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var next = cur === 'dark' ? 'light' : (cur === 'light' ? 'dark' : (prefersDark ? 'light' : 'dark'));
+  document.documentElement.setAttribute('data-theme', next);
+  try{ localStorage.setItem('xf-theme', next); }catch(e){}
+});
+var menuBtn = document.getElementById('menuToggle');
+var drawer = document.getElementById('mobileDrawer');
+menuBtn.addEventListener('click', function(){ drawer.classList.toggle('open'); });
+drawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ drawer.classList.remove('open'); }); });
+document.querySelectorAll('[data-acc-head]').forEach(function(head){ head.addEventListener('click', function(){ head.parentElement.classList.toggle('open'); }); });
+
+document.querySelectorAll('.pattern-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.pattern-btn').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    currentPattern = btn.getAttribute('data-pattern');
+    document.getElementById('patternDesc').textContent = PATTERNS_I18N[currentLang][currentPattern].desc;
+    stopBreathing();
+  });
+});
+
+var breathTimer=null, breathRunning=false, phaseIndex=0, phaseRemain=0, sessionSeconds=0;
+
+function setOrbState(labelText, countText, scale){
+  ['heroOrb','widgetOrb'].forEach(function(id){ document.getElementById(id).style.transform = 'scale(' + scale + ')'; });
+  document.getElementById('phaseLabel').textContent = labelText;
+  document.getElementById('phaseCount').textContent = countText;
+  document.getElementById('heroPhaseLabel').textContent = labelText;
+  document.getElementById('heroPhaseCount').textContent = countText;
+}
+function startPhase(){
+  var phases = PATTERNS_I18N[currentLang][currentPattern].phases;
+  var phase = phases[phaseIndex];
+  phaseRemain = phase[1];
+  var inhaleWords = ['Inhale','吸气','들이쉬기','코로','용비'];
+  var exhaleWords = ['Exhale','呼气','내쉬기','오므려','缩唇'];
+  var isInhale = inhaleWords.some(function(w){ return phase[0].indexOf(w) !== -1; });
+  var isExhale = exhaleWords.some(function(w){ return phase[0].indexOf(w) !== -1; });
+  var scale = isInhale ? 1.18 : (isExhale ? 0.85 : 1.0);
+  ['heroOrb','widgetOrb'].forEach(function(id){ document.getElementById(id).style.transitionDuration = phase[1] + 's'; });
+  setOrbState(phase[0], phaseRemain + I18N[currentLang].unit_sec, scale);
+}
+function tickBreathing(){
+  phaseRemain -= 1; sessionSeconds += 1;
+  if(phaseRemain <= 0){ phaseIndex = (phaseIndex+1) % PATTERNS_I18N[currentLang][currentPattern].phases.length; startPhase(); }
+  else{
+    document.getElementById('phaseCount').textContent = phaseRemain + I18N[currentLang].unit_sec;
+    document.getElementById('heroPhaseCount').textContent = phaseRemain + I18N[currentLang].unit_sec;
+  }
+}
+document.getElementById('breatheStart').addEventListener('click', function(){
+  if(breathRunning) return;
+  breathRunning = true; phaseIndex = 0; sessionSeconds = 0;
+  startPhase();
+  breathTimer = setInterval(tickBreathing, 1000);
+});
+document.getElementById('breatheStop').addEventListener('click', stopBreathing);
+function stopBreathing(){
+  if(breathTimer){ clearInterval(breathTimer); breathTimer=null; }
+  if(breathRunning && sessionSeconds >= 20){ saveBreathSession(sessionSeconds); }
+  breathRunning = false;
+  setOrbState(I18N[currentLang].orb_ready_label, I18N[currentLang].orb_widget_ready_count, 1);
+  document.getElementById('heroPhaseCount').textContent = I18N[currentLang].orb_hero_ready_count;
+}
+function todayKey(){ var d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function loadJSON(key, fallback){ try{ var raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : fallback; }catch(e){ return fallback; } }
+function saveJSON(key, value){ try{ localStorage.setItem(key, JSON.stringify(value)); }catch(e){} }
+function saveBreathSession(seconds){
+  var log = loadJSON('xf-breath-log', {});
+  var key = todayKey();
+  if(!log[key]) log[key] = { sessions:0, seconds:0 };
+  log[key].sessions += 1; log[key].seconds += seconds;
+  saveJSON('xf-breath-log', log);
+  renderBreathStats();
+}
+function renderBreathStats(){
+  var log = loadJSON('xf-breath-log', {});
+  var key = todayKey();
+  var today = log[key] || { sessions:0, seconds:0 };
+  document.getElementById('statSessions').textContent = today.sessions;
+  document.getElementById('statMinutes').textContent = Math.round(Object.values(log).reduce(function(sum,d){return sum+d.seconds;},0)/60);
+  var streak = 0; var cursor = new Date();
+  for(var i=0;i<60;i++){
+    var k = cursor.getFullYear()+'-'+String(cursor.getMonth()+1).padStart(2,'0')+'-'+String(cursor.getDate()).padStart(2,'0');
+    if(log[k] && log[k].sessions > 0){ streak += 1; cursor.setDate(cursor.getDate()-1); } else break;
+  }
+  document.getElementById('statStreak').textContent = streak;
+}
+renderBreathStats();
+
+var ageInput=document.getElementById('ageInput'), rhrInput=document.getElementById('rhrInput');
+var lowSlider=document.getElementById('intensityLow'), highSlider=document.getElementById('intensityHigh');
+function updateZone(){
+  var age = parseInt(ageInput.value,10) || 60;
+  var rhr = parseInt(rhrInput.value,10) || 70;
+  var low = parseInt(lowSlider.value,10), high = parseInt(highSlider.value,10);
+  if(low > high){ var t=low; low=high; high=t; }
+  var hrMax = 220 - age; var reserve = hrMax - rhr;
+  var lowHr = Math.round(reserve*(low/100)+rhr), highHr = Math.round(reserve*(high/100)+rhr);
+  document.getElementById('intensityOut').textContent = low + '–' + high + '%';
+  document.getElementById('zoneResult').textContent = lowHr + '–' + highHr;
+  document.getElementById('zoneFill').style.left = low + '%';
+  document.getElementById('zoneFill').style.width = (high-low) + '%';
+}
+[ageInput, rhrInput, lowSlider, highSlider].forEach(function(el){ el.addEventListener('input', updateZone); });
+updateZone();
+
+document.getElementById('mwtDate').value = todayKey();
+document.getElementById('mwtSave').addEventListener('click', function(){
+  var date = document.getElementById('mwtDate').value || todayKey();
+  var dist = parseFloat(document.getElementById('mwtDistance').value);
+  if(!dist || dist <= 0){ alert(I18N[currentLang].alert_distance); return; }
+  var records = loadJSON('xf-mwt-log', []);
+  records.push({ date:date, distance:Math.round(dist) });
+  records.sort(function(a,b){ return a.date.localeCompare(b.date); });
+  saveJSON('xf-mwt-log', records);
+  document.getElementById('mwtDistance').value = '';
+  renderMwt();
+});
+function renderMwt(){
+  var records = loadJSON('xf-mwt-log', []);
+  var tbody = document.querySelector('#mwtTable tbody'); tbody.innerHTML = '';
+  records.slice(-8).reverse().forEach(function(r){
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td>'+r.date+'</td><td>'+r.distance+' '+I18N[currentLang].unit_dist+'</td>';
+    tbody.appendChild(tr);
+  });
+  drawBarChart('mwtChart', records.slice(-8).map(function(r){return r.distance;}), records.slice(-8).map(function(r){return r.date.slice(5);}), getCssVar('--teal'));
+}
+
+var moodValue = 3;
+document.querySelectorAll('.mood-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.mood-btn').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    moodValue = parseInt(btn.getAttribute('data-mood'),10);
+  });
+});
+document.getElementById('checkinSave').addEventListener('click', function(){
+  var hr = parseInt(document.getElementById('checkinHr').value,10);
+  var breath = document.getElementById('checkinBreath').value;
+  var note = document.getElementById('checkinNote').value;
+  if(!hr || hr < 30 || hr > 220){ alert(I18N[currentLang].alert_hr); return; }
+  var records = loadJSON('xf-checkin-log', []);
+  records.push({ date:todayKey(), mood:moodValue, hr:hr, breath:breath, note:note });
+  saveJSON('xf-checkin-log', records);
+  document.getElementById('checkinHr').value = '';
+  document.getElementById('checkinNote').value = '';
+  renderCheckins();
+});
+function renderCheckins(){
+  var records = loadJSON('xf-checkin-log', []);
+  var tbody = document.querySelector('#checkinTable tbody'); tbody.innerHTML = '';
+  var moodEmoji = {1:'😣',2:'🙁',3:'😐',4:'🙂',5:'😄'};
+  records.slice(-7).reverse().forEach(function(r){
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td>'+r.date+'</td><td>'+(moodEmoji[r.mood]||'-')+'</td><td>'+r.hr+'</td><td>'+r.breath+'</td>';
+    tbody.appendChild(tr);
+  });
+  drawBarChart('checkinChart', records.slice(-7).map(function(r){return r.hr;}), records.slice(-7).map(function(r){return r.date.slice(5);}), getCssVar('--coral'));
+}
+
+function getCssVar(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || '#2F6F63'; }
+function drawBarChart(canvasId, values, labels, color){
+  var canvas = document.getElementById(canvasId);
+  var dpr = window.devicePixelRatio || 1;
+  var rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr; canvas.height = rect.height * dpr;
+  var ctx = canvas.getContext('2d'); ctx.scale(dpr, dpr);
+  ctx.clearRect(0,0,rect.width, rect.height);
+  if(!values.length){
+    ctx.fillStyle = getCssVar('--ink-soft'); ctx.font = '13px Inter';
+    ctx.fillText(I18N[currentLang].chart_no_data, 8, rect.height/2);
+    return;
+  }
+  var max = Math.max.apply(null, values) * 1.15;
+  var padBottom = 18; var w = rect.width / values.length;
+  values.forEach(function(v,i){
+    var h = (v/max) * (rect.height - padBottom);
+    ctx.fillStyle = color;
+    ctx.fillRect(i*w + w*0.2, rect.height - padBottom - h, w*0.6, h);
+    ctx.fillStyle = getCssVar('--ink-soft'); ctx.font = '11px Inter'; ctx.textAlign = 'center';
+    ctx.fillText(labels[i], i*w + w/2, rect.height - 4);
+  });
+}
+window.addEventListener('resize', function(){ renderMwt(); renderCheckins(); });
+
+applyLang(detectLang());
+</script>
+</body>
+</html>
